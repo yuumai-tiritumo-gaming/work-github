@@ -7,5 +7,5 @@ class CreateAddresses < ActiveRecord::Migration[6.1]
       t.string  :address,         null: false
       t.timestamps                null: false
     end
-  end
+  enda
 end
