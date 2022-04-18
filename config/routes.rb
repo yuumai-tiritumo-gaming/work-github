@@ -1,54 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
-  end
-  namespace :admin do
-    get 'order_items/update'
-  end
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/create'
-    get 'cart_items/clear'
-    get 'cart_items/destroy'
-    get 'cart_items/update'
-  end
-  namespace :admin do
-    get 'orders/show'
-    get 'orders/index'
-    get 'orders/update'
-  end
-  namespace :public do
-    get 'orders/show'
-    get 'orders/index'
-    get 'orders/new'
-    get 'orders/check'
-    get 'orders/create'
-  end
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/create'
-    get 'addresses/destroy'
-    get 'addresses/edit'
-    get 'addresses/update'
-  end
-  namespace :admin do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/index'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/confirmation'
-    get 'customers/unsubscribe'
-  end
-devise_for :customers,skip: [:passwords], controllers: {
+devise_for :customers,skip: [:passwords], path: '/', controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
@@ -57,6 +9,26 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+namespace :public, path: '/' do
+    root to: "items#top"
+    resources "items",                       only: [:show,:index]
+    get       "/about"                       => "items#about"
+    get       "/mypage/confirmation"         => "items#confirmation"
+    patch     "/mypage/confirmation"         => "items#unsubscribe"
+    resource  "customers", path: '/mypage',  only: [:show,:edit,:update]
+    resources "addresses",                   only: [:index,:edit,:create,:destroy,:update]
+    resources "orders",                      only: [:index,:show,:new,:create]
+    get       "/orders/check"                => "orders#check"
+    resources "cart_items",                  only: [:index,:create,:destroy,:update]
+    delete    "/cart_items"                  => "cart_items#clear"
+  end
 
+
+namespace :admin do
+    get 'items' => 'items#index'
+    get 'customers/index'
+    get 'customers/edit'
+    
+  end
 
 end
