@@ -9,7 +9,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string  :family_kana,        null: false
       t.string  :first_kana,         null: false
       t.string  :email,              null: false, default: ""
-      t.string  :password,           null: false, default: ""
+      t.string  :encrypted_password, null: false, default: ""
       t.string  :phone_number,       null: false
       t.string  :postal_code,        null: false
       t.string  :address,            null: false
