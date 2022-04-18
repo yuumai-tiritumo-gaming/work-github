@@ -25,7 +25,8 @@ namespace :public, path: '/' do
 
 
 namespace :admin do
-  resources "orders",      only: [:index,:show,:update]
+  get       "/"      => "orders#index"
+  resources "orders",      only: [:show,:update]
   resources "order_items", only: [:update]
   resources "genres",      only: [:index,:create,:edit,:update]
   resources "customers",   only: [:index,:show,:edit,:update]
