@@ -25,11 +25,11 @@ namespace :public, path: '/' do
 
 
 namespace :admin do
-  resources "orders", only: [:index,:show,:update]
+  resources "orders",      only: [:index,:show,:update]
   resources "order_items", only: [:update]
-  resources "genres", only: [:index,:create,:edit,:update]
-  resources "customers", only: [:index,:show,:edit,:update]
-  resources "items", except: :destroy
+  resources "genres",      only: [:index,:create,:edit,:update]
+  resources "customers",   only: [:index,:show,:edit,:update]
+  resources "items",       except: :destroy
   end
 
 end
