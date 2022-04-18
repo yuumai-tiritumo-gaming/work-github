@@ -13,6 +13,6 @@ class Customer < ApplicationRecord
   validates :family_kana, format: { with: KATAKANA_REGEXP }
   validates :first_kana, format: { with: KATAKANA_REGEXP }
 
-  validates :password, length: { minimum: 6 }
+
   validates :postal_code, length: { is: 7 }
 end
