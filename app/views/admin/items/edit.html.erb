@@ -1,2 +1,27 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+
+<%= form_with model: @item, url: admin_item_path(@item.id), method: :patch , local:true do |f| %>
+<p>itemimage</p>
+<%= f.file_field :item_image, accept: "image/*" %>
+
+<p>name</p>
+<%= f.text_field :name, class: 'form-control' %>
+<p>body</p>
+<%= f.text_area :body, class: 'form-control' %>
+<p>ジャンル</p>
+<%= f.collection_select :genre_id, @genre, :id, :name, include_blank: "選択して下さい" %>
+<p>税抜価格</p>
+<%= f.text_area :non_tax_price, class: 'form-control' %>
+
+<p>販売ステータス</p>
+<%= f.radio_button :is_selling, "true" %>
+<%= f.label :is_selling, "販売中" %>
+<%= f.radio_button :is_selling, "false" %>
+<%= f.label :is_selling, "販売停止中" %>
+
+
+<%= f.submit class: 'btn btn-success' %>
+
+
+
+
+<% end %>

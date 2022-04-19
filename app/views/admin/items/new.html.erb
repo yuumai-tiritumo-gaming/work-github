@@ -1,5 +1,5 @@
 
-<%= form_with url: admin_items_path , local:true do |f| %>
+<%= form_with model: @item,url: admin_items_path, local:true do |f| %>
 <p>itemimage</p>
 <%= f.file_field :item_image, accept: "image/*" %>
 
