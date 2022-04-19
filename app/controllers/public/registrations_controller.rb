@@ -15,14 +15,23 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
+  def edit
   #   super
-  # end
+    @customer = Customer.find(params[:id])
+    unless @customer == current_customer
+      redirect_to public_mypage_path(@customer)
+    end
+  end
 
   # PUT /resource
-  # def update
+  def update
   #   super
-  # end
+    if current_customer.update(customer_params)
+     redirect_to public_mypage_path(current_customer)
+    else
+     redirect_to edit_customer_registration(current_customer)
+    end
+  end
 
   # DELETE /resource
   # def destroy
