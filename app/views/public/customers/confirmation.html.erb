@@ -1,1 +1,21 @@
 <b>本当に退会しますか？</b>
+<p>退会すると、会員登録情報や</p>
+<p>これまでの購入履歴が閲覧できなくなります。</p>
+<p>退会する場合は、「退会する」をクリックしてください。</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to public_mypage_path, class: "btn btn-primary" do %>
+          退会しない
+        <% end %>
+      </td>
+      <td>
+        <%= link_to public_mypage_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-danger" do %>
+          退会する
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
