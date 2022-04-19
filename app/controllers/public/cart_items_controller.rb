@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+  
   def index
   end
 
@@ -6,6 +7,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def clear
+    current_user.cart_items.destroy_all
+    redirect_to request.referer
   end
 
   def destroy
