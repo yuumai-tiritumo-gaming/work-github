@@ -1,2 +1,20 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<h2>ショッピングカート</h2>
+  <% link_to "カートを空にする", public_cart_item_path, method: :delete %>
+<table class='table'>
+    <thead>
+      <tr>
+        <th>商品名</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% genres.each do |genres| %>
+        <tr>
+          <td><%= genres.name %></td>
+          <td><%= link_to "編集する", edit_admin_genre_path(genres), class: "btn btn-success" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
