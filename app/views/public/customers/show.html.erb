@@ -1,8 +1,14 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
-<%= link_to destroy_customer_session_path, method: :delete do %> 
-ログアウト 
-<% end %>
-
 マイページ
 <h2>登録情報</h2>
+<%= link_to edit_public_customers_path, class: "btn btn-success" do %>
+  編集する
+<% end %>
+
+<table>
+  <tbody>
+    <tr>
+      <td>氏名</td>
+      <td><%= @customer.family_name %>　<%= @customer.first_name %></td>
+    </tr>
+  </tbody>
+</table>
