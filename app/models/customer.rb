@@ -15,4 +15,8 @@ class Customer < ApplicationRecord
 
 
   validates :postal_code, length: { is: 7 }
+  
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
 end
