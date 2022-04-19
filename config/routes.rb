@@ -13,9 +13,9 @@ namespace :public, path: '/' do
     root to: "items#top"
     resources "items",                       only: [:show,:index]
     get       "/about"                       => "items#about"
-    get       "/customers/confirmation"      => "items#confirmation"
-    get       "/mypage"                      => "items#top"
-    patch     "/mypage"                      => "items#unsubscribe"
+    get       "/customers/confirmation"      => "customers#confirmation"
+    get       "/mypage"                      => "customers#show"
+    patch     "/mypage"                      => "customers#unsubscribe"
     resource  "customers",                   only: [:edit,:update]
     resources "addresses",                   only: [:index,:edit,:create,:destroy,:update]
     resources "orders",                      only: [:index,:show,:new,:create]
