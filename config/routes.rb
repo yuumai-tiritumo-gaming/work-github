@@ -30,7 +30,7 @@ namespace :admin do
   get       "/"      => "orders#index"
   resources "orders",      only: [:show,:update]
   resources "order_items", only: [:update]
-  resources "genres",      only: [:index,:create,:edit,:update]
+  resources "genres",      only: [:new,:index,:create,:edit,:update]
   resources "customers",   only: [:index,:show,:edit,:update]
   resources "items",       except: :destroy
   end
