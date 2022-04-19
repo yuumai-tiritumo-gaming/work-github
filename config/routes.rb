@@ -13,12 +13,14 @@ namespace :public, path: '/' do
     root to: "items#top"
     resources "items",                       only: [:show,:index]
     get       "/about"                       => "items#about"
-    get       "/mypage/confirmation"         => "items#confirmation"
-    patch     "/mypage/confirmation"         => "items#unsubscribe"
-    resource  "customers", path: '/mypage',  only: [:show,:edit,:update]
+    get       "/customers/confirmation"      => "items#confirmation"
+    get       "/mypage"                      => "items#top"
+    patch     "/mypage"                      => "items#unsubscribe"
+    resource  "customers",                   only: [:edit,:update]
     resources "addresses",                   only: [:index,:edit,:create,:destroy,:update]
     resources "orders",                      only: [:index,:show,:new,:create]
     get       "/orders/check"                => "orders#check"
+    get       "/orders/conform"              => "orders#conform"
     resources "cart_items",                  only: [:index,:create,:destroy,:update]
     delete    "/cart_items"                  => "cart_items#clear"
   end
