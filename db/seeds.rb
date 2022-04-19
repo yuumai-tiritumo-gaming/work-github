@@ -16,4 +16,7 @@ Customer.create!(
                 password_confirmation: "123456",
                 created_at: Time.zone.now
                 )
-                             
+Genre.create!(
+              name: "cake",
+              created_at: Time.zone.now
+              )
