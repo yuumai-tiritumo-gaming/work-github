@@ -18,6 +18,7 @@ Customer.create!(
     password_confirmation: "123456",
                created_at: Time.zone.now
                 )
+
 Genre.create!(
                id: 1,
              name: "甘いやつ",
