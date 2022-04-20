@@ -7,6 +7,6 @@ module Public::CartItemsHelper
   def subtotal(quantity)
     ((@tax_in.to_i)*quantity).floor.to_s(:delimited)
   end
-  
+
 
 end
