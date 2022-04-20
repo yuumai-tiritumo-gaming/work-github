@@ -28,7 +28,7 @@
             <td><%= @item.name %></td>
             <td><%= @item.body %></td>
             <td><%= @item.genre.name %></td>
-            <td><%= @item.non_tax_price %>(<%= @item.add_tax_price %>)</td>
+            <td><%= @item.non_tax_price %>(<%= with_tax_price(@item.non_tax_price) %>)</td>
             <td>
               <% if @item.is_selling == true %>
                 <p class = "text-success">販売中</p>

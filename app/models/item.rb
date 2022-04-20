@@ -12,8 +12,8 @@ class Item < ApplicationRecord
   validates :non_tax_price, presence: true
   validates :is_selling, presence: true
 
-  def add_tax_price
-    (self.non_tax_price * 1.08).round
-  end
+  #def add_tax_price
+    #(self.non_tax_price * 1.08).round
+  #end
 
 end
