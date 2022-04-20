@@ -1,2 +1,37 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>会員情報編集</h2>
+    <%= form_with model: @customer, url: public_customers_path, local:true do |f| %>
+      <div class="form-group">
+        <%= f.label :family_name, "氏名" %>
+        <%= f.text_field :family_name, class: "form-control" %>
+        <%= f.label :false %>
+        <%= f.text_area :first_name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :family_kana %>
+        <%= f.text_area :family_kana, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :first_kana %>
+        <%= f.text_area :first_kana, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :postal_code %>
+        <%= f.text_area :postal_code, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :phone_number %>
+        <%= f.text_area :phone_number, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_area :email, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>
