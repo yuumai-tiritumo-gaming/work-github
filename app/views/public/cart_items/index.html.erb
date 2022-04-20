@@ -1,20 +1,38 @@
 <h2>ショッピングカート</h2>
-  <% link_to "カートを空にする", public_cart_item_path, method: :delete %>
+  <%= link_to "カートを空にする", public_cart_items_clear_path, method: :delete %>
 <table class='table'>
     <thead>
       <tr>
+        <th></th>
         <th>商品名</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
       </tr>
     </thead>
     <tbody>
-      <% genres.each do |genres| %>
+      <% @cart_items.each do |cart_items| %>
+      <% item = Item.find(cart_items.item_id) %>
         <tr>
-          <td><%= genres.name %></td>
-          <td><%= link_to "編集する", edit_admin_genre_path(genres), class: "btn btn-success" %></td>
+          <td><%= "画像" %></td>
+          <td><%= item.name %></td>
+          <td><%= with_tax_price(item.non_tax_price) %></td>
+          <td>
+            <%= form_with url: public_cart_item_path(cart_items), method: :patch do |f| %>
+            <!--ここのリファクタリングわからなすぎて死ねる、きたね〜〜〜〜〜〜〜〜〜〜〜〜〜。(1..20).to_aをハッシュにする？-->
+            <%= f.select :non_tax_price, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10],[11,11],[12,12],[13,13],[14,14],[15,15],[16,16],[17,17],[18,18],[19,19],[20,20]], selected: "#{cart_items.quantity}" %>
+            <%= f.submit "変更する" %>
+            <% end %>
+          </td>
+          <td><%= subtotal(cart_items.quantity) %></td>
+          <td><%= link_to "削除する", public_cart_item_path(cart_items), method: :delete, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
+  <%= link_to "買い物を続ける", public_root_path, class: "btn btn-primary" %>
+  <h5>合計金額</h5>
+  <%= "200" %>
+
+  <%= link_to "情報入力に進む", new_public_order_path, class: "btn btn-success" %>

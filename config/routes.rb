@@ -22,7 +22,7 @@ namespace :public, path: '/' do
     get       "/orders/check"                => "orders#check"
     get       "/orders/conform"              => "orders#conform"
     resources "cart_items",                  only: [:index,:create,:destroy,:update]
-    delete    "/cart_items"                  => "cart_items#clear"
+    delete    "/cart_items/clear"            => "cart_items#clear"
   end
 
 
