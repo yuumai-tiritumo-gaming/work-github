@@ -12,7 +12,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items =  current_customer.cart_items
     respond_to do |format|
      format.html { redirect_to request.referer }
-     format.js   { render "public/cart_items/update.js.erb" }
+     format.js   { render 'public/cart_items/update.js.erb' }
     end
   end
 
@@ -21,7 +21,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items =  current_customer.cart_items
     respond_to do |format|
      format.html { redirect_to request.referer }
-     format.js   { render "public/cart_items/update.js.erb" }
+     format.js   { render 'public/cart_items/update.js.erb' }
     end
   end
 
