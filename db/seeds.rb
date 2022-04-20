@@ -33,10 +33,24 @@ Item.create!(
         is_selling: true,
         created_at: Time.zone.now
             )
+Item.create!(
+          genre_id: 1,
+              name: "やばいクッキー",
+              body: "それなりに美味しい",
+     non_tax_price: 500,
+        is_selling: true,
+        created_at: Time.zone.now
+            )
 
 CartItem.create!(
        customer_id: 1,
            item_id: 1,
           quantity: 2,
+        created_at: Time.zone.now
+                )
+CartItem.create!(
+       customer_id: 1,
+           item_id: 2,
+          quantity: 3,
         created_at: Time.zone.now
                 )

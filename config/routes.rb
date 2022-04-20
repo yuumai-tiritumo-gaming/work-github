@@ -10,19 +10,19 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 }
 
 namespace :public, path: '/' do
-    root to: "items#top"
-    resources "items",                       only: [:show,:index]
-    get       "/about"                       => "items#about"
-    get       "/customers/confirmation"      => "customers#confirmation"
-    get       "/mypage"                      => "customers#show"
-    patch     "/mypage"                      => "customers#unsubscribe"
-    resource  "customers", path: "/customer",only: [:edit,:update]
-    resources "addresses",                   only: [:index,:edit,:create,:destroy,:update]
-    resources "orders",                      only: [:index,:show,:new,:create]
-    get       "/orders/check"                => "orders#check"
-    get       "/orders/conform"              => "orders#conform"
-    resources "cart_items",                  only: [:index,:create,:destroy,:update]
-    delete    "/cart_items"                  => "cart_items#clear"
+    root to:  "items#top"
+    resources "items",                        only: [:show,:index]
+    get       "/about"                        => "items#about"
+    get       "/customer/confirmation"        => "customers#confirmation"
+    get       "/mypage"                       => "customers#show"
+    patch     "/mypage"                       => "customers#unsubscribe"
+    resource  "customers", path: '/customer', only: [:edit,:update]
+    resources "addresses",                    only: [:index,:edit,:create,:destroy,:update]
+    resources "orders",                       only: [:index,:show,:new,:create]
+    get       "/orders/check"                 => "orders#check"
+    get       "/orders/conform"               => "orders#conform"
+    delete    "/cart_items/clear"             => "cart_items#clear"
+    resources "cart_items",                   only: [:index,:create,:destroy,:update]
   end
 
 
