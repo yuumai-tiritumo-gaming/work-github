@@ -1,1 +1,36 @@
-top
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <p>ジャンル検索</p>
+      <% @genres.each do |genres| %>
+      <p><%= genres.name %></p>
+      <% end %>
+    </div>
+    <div class = "col">
+      <p>
+      ようこそ、ながのCAKEへ！
+      このサイトは、ケーキ販売のECサイトになります。
+      会員ない方も商品の閲覧はできますが、
+      購入には会員登録が必要になります。
+      </p>
+    </div>
+  </div>
+  <div class = "row">
+    <% @items.each do |item| %>
+    <div class = "col">
+      <% if item.item_image.attached? %>
+        <%= image_tag item.item_image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+      <%= link_to item.name, public_item_path(item.id) %>
+      <%= item.non_tax_price %>
+      <% if item.is_selling == true %>
+        <p class = "text-success">販売中</p>
+      <% else %>
+        <p class = "text-black-50">販売停止中</p>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
