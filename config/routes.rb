@@ -16,13 +16,13 @@ namespace :public, path: '/' do
     get       "/customers/confirmation"      => "customers#confirmation"
     get       "/mypage"                      => "customers#show"
     patch     "/mypage"                      => "customers#unsubscribe"
-    resource  "customers",                   only: [:edit,:update]
+    resource  "customers", path: "/customer",only: [:edit,:update]
     resources "addresses",                   only: [:index,:edit,:create,:destroy,:update]
     resources "orders",                      only: [:index,:show,:new,:create]
     get       "/orders/check"                => "orders#check"
     get       "/orders/conform"              => "orders#conform"
     resources "cart_items",                  only: [:index,:create,:destroy,:update]
-    delete    "/cart_items/clear"            => "cart_items#clear"
+    delete    "/cart_items"                  => "cart_items#clear"
   end
 
 
