@@ -13,10 +13,10 @@ namespace :public, path: '/' do
     root to: "items#top"
     resources "items",                       only: [:show,:index]
     get       "/about"                       => "items#about"
-    get       "/customers/confirmation"      => "customers#confirmation"
+    get       "/customer/confirmation"      => "customers#confirmation"
     get       "/mypage"                      => "customers#show"
     patch     "/mypage"                      => "customers#unsubscribe"
-    resource  "customers",                   only: [:edit,:update]
+    resource  "customers", path: "/customer",                   only: [:edit,:update]
     resources "addresses",                   only: [:index,:edit,:create,:destroy,:update]
     resources "orders",                      only: [:index,:show,:new,:create]
     get       "/orders/check"                => "orders#check"
