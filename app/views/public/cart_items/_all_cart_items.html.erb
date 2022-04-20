@@ -2,7 +2,7 @@
       <% cart_items.each do |cart_items| %>
       <% item = Item.find(cart_items.item_id) %>
         <tr>
-          <td><%= item.get_item_image(20,20) %></td>
+          <td><%= image_tag item.get_item_image(20,20) %></td>
           <td><%= item.name %></td>
           <td><%= with_tax_price(item.non_tax_price) %></td>
           <td>
