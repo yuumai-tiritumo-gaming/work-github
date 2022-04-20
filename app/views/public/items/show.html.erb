@@ -1,2 +1,39 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-3">
+      <p>ジャンル検索</p>
+      <% @genres.each do |genres| %>
+      <p><%= genres.name %></p>
+      <% end %>
+    </div>
+    <div class = "col-9">
+      <div class = "row">
+        <div class = "col-4">
+        <% if @item.item_image.attached? %>
+          <%= image_tag @item.item_image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+          </%>
+        <% end %>
+        </div>
+        <div class = "col-5">
+          <h3><%= @item.name %></h3>
+          <p><%= @item.body %></p>
+          <h3>￥<%= with_tax_price(@item.non_tax_price) %><sapn class = "small">(税込み)</sapn></h3>
+          <% if @item.is_selling == true %>
+            <p class = "text-success">販売中</p>
+          <% else %>
+            <p class = "text-black-50">販売停止中</p>
+          <% end %>
+          <!--カート追加用のフォーム　現状機能なし-->
+          <%= form_with url: public_cart_items_path, local:true do |f| %>
+            <%= hidden_field_tag :customer_id, current_customer.id %>
+            <%= hidden_field_tag :item_id, @item.id %>
+            <%= f.select :quantity, *[1..10], include_blank: "個数選択"  %>
+            <%= f.submit "カートに入れる", class: "btn btn-success"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
