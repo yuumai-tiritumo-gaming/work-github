@@ -8,11 +8,21 @@ class Public::CartItemsController < ApplicationController
   end
 
   def clear
-    current_user.cart_items.destroy_all
-    redirect_to request.referer
+    current_customer.cart_items.destroy_all
+    @cart_items =  current_customer.cart_items
+    respond_to do |format|
+     format.html { redirect_to request.referer }
+     format.js   { render "public/cart_items/update" }
+    end
   end
 
   def destroy
+    CartItem.find(params[:id]).destroy
+    @cart_items =  current_customer.cart_items
+    respond_to do |format|
+     format.html { redirect_to request.referer }
+     format.js   { render "public/cart_items/update" }
+    end
   end
 
   def update

@@ -1,4 +1,4 @@
-<tbody id="all_cart_items">
+    <tbody id="all_cart_items">
       <% cart_items.each do |cart_items| %>
       <% item = Item.find(cart_items.item_id) %>
         <tr>
@@ -17,3 +17,8 @@
         </tr>
       <% end %>
     </tbody>
+  </table>
+
+  <%= link_to "買い物を続ける", public_root_path, class: "btn btn-primary" %>
+  <h5>合計金額</h5>
+  <%= total_price(cart_items) %>
