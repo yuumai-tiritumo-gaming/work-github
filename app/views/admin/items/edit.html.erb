@@ -1,4 +1,4 @@
-
+<%= render 'error', item: @item %>
 <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch , local:true do |f| %>
 <p>itemimage</p>
 <%= f.file_field :item_image, accept: "image/*" %>
