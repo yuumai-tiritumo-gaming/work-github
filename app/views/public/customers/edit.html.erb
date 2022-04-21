@@ -2,35 +2,62 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2>会員情報編集</h2>
+
+    <% if @customer.errors.any? %>
+      <%= @customer.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
     <%= form_with model: @customer, url: public_customers_path, local:true do |f| %>
       <div class="form-group">
-        <%= f.label :family_name, "氏名" %>
-        <%= f.text_field :family_name, class: "form-control" %>
-        <%= f.label :false %>
-        <%= f.text_area :first_name, class: "form-control" %>
+        <div class="form-inline">
+          <label>氏名　</label>
+          <%= f.text_field :family_name, class: "form-control" %>
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
       </div>
       <div class="form-group">
-        <%= f.label :family_kana %>
-        <%= f.text_area :family_kana, class: "form-control" %>
+        <div class="form-inline">
+          <label>フリガナ　</label>
+          <%= f.text_field :family_kana, class: "form-control" %>
+          <%= f.text_field :first_kana, class: "form-control" %>
+        </div>
       </div>
       <div class="form-group">
-        <%= f.label :first_kana %>
-        <%= f.text_area :first_kana, class: "form-control" %>
+        <div class="form-inline">
+          <label>郵便番号　</label>
+          <%= f.text_field :postal_code, class: "form-control" %>
+        </div>
       </div>
       <div class="form-group">
-        <%= f.label :postal_code %>
-        <%= f.text_area :postal_code, class: "form-control" %>
+        <div class="form-inline">
+          <label>住所　</label>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
       </div>
       <div class="form-group">
-        <%= f.label :phone_number %>
-        <%= f.text_area :phone_number, class: "form-control" %>
+        <div class="form-inline">
+          <label>電話番号　</label>
+          <%= f.text_field :phone_number, class: "form-control" %>
+        </div>
       </div>
       <div class="form-group">
-        <%= f.label :email %>
-        <%= f.text_area :email, class: "form-control" %>
+        <div class="form-inline">
+          <label>メールアドレス　</label>
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
       </div>
       <div class="form-group">
-        <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+        <div class="form-inline">
+          <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+          <%= link_to public_customer_confirmation_path, class: "btn btn-danger" do %>
+            退会する
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>

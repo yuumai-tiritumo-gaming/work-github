@@ -21,4 +21,9 @@ class Public::CustomersController < ApplicationController
 
   def unsubscribe
   end
+
+  private
+  def customer_params
+    params.require(:customer).permit(:family_name, :first_name, :family_kana, :first_kana, :email, :phone_number, :postal_code, :address)
+  end
 end
