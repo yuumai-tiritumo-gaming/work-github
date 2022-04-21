@@ -54,3 +54,24 @@ CartItem.create!(
           quantity: 3,
         created_at: Time.zone.now
                 )
+
+Order.create!(
+       customer_id: 1,
+       postal_code: "1113333",
+           address: "東京",
+              name: "YubeChang",
+    payment_method: 0,
+      trade_status: 0,
+     total_payment: 1900,
+           postage: 800,
+        created_at: Time.zone.now
+                )
+
+OrderItem.create!(
+          order_id: 1,
+           item_id: 2,
+             price: 500,
+          quantity: 2,
+     making_status: 0,
+        created_at: Time.zone.now
+                )
