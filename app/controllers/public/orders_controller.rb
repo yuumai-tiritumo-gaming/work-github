@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params).save
+    Order.new(order_params).save
     redirect_to action: "conform"
   end
 
