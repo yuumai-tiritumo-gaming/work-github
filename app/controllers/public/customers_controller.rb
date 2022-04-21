@@ -22,9 +22,9 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
     @customer = current_customer
     @customer.update(is_active: false)
-    reset_session
+    sign_out
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to public_root_path
+    redirect_to  new_customer_session_path
   end
 
   private
