@@ -1,2 +1,27 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<h1>注文履歴詳細</h1>
+注文情報
+  注文日
+  <%= @order.created_at %>
+  配送先
+    郵便番号
+    <%= @order.postal_code %>
+    住所
+    <%= @order.address %>
+    宛名
+    <%= @order.name %>
+  支払い方法
+  <%= @order.payment_method %>
+  ステータス
+  <%= @order.trade_status %>
+
+請求情報
+  商品合計
+  <%=  %>
+  配送料
+  <%= @order.postage %>
+  ご請求額
+  <%= @order.total_payment %>
+
+注文内容
+商品(画像なし)//単価（税込）//個数//小計
+<% @order.item %>
