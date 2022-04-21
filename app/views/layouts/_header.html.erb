@@ -2,6 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <span>ながのCAKE</span>
+      <span>ようこそ<%= "#{current_customer.family_name}" %>さん</span>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -77,6 +78,10 @@
           </li>
         <% end %>
         </ul>
+        <%= form_with(url: public_root_path, local: true, method: :get, class: "rootpageSearchForm") do |form| %>
+          <%= form.text_field :keyword, placeholder: "Search", class: "rootpageSearchForm__content" %>
+          <%= form.submit "検索", class: "rootpageSearchForm__bottum" %>
+        <% end %>
       </div>
     </div>
   </nav>
