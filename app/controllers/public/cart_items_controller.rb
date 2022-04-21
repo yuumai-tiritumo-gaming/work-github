@@ -5,6 +5,9 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+    cart_item = CartItem.new(cart_item_params)
+    cart_item.save
+    redirect_to action: "index"
   end
 
   def clear
@@ -33,6 +36,12 @@ class Public::CartItemsController < ApplicationController
      format.html { redirect_to request.referer }
      format.js
     end
+  end
+
+  private
+
+  def cart_item_params
+    params.require(:cart_item).permit(:customer_id, :item_id, :quantity)
   end
 
 end
