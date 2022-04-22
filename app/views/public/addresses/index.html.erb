@@ -27,17 +27,21 @@
       <td>郵便番号</td>
       <td>住所</td>
       <td>宛名</td>
-    </tr>
-    <tr>
-      <td><%= @customer.postal_code %></td>
-      <td><%= @customer.address %></td>
-      <td><%= @customer.family_name %><%= @customer.first_name %></td>
+      <td></td>
     </tr>
     <% @addresses.each do |address| %>
     <tr>
       <td><%= address.postal_code %></td>
       <td><%= address.address %></td>
       <td><%= address.name %></td>
+      <td>
+        <%= link_to edit_public_address_path(address), class: "btn btn-success" do %>
+          編集する
+        <% end %>
+        <%= link_to public_address_path(address), class: "btn btn-danger", method: :delete do %>
+          削除する
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

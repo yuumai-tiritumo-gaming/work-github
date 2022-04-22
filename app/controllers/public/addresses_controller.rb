@@ -11,10 +11,13 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
+    Address.find(params[:id]).destroy
+    redirect_to request.referer
   end
 
   def edit
-
+    @customer = current_customer
+    @addresses = @customer.addresses
   end
 
   def update
