@@ -16,14 +16,13 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @customer = current_customer
-    @addresses = @customer.addresses
+    @address = Address.find(params[:id])
   end
 
   def update
-    @customer = current_customer
-    if @customer.update(customer_params)
-      redirect_to public_mypage_path(@customer), notice: "会員情報を更新しました"
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to  public_addresses_path, notice: "会員情報を更新しました"
     else
       render "edit"
     end
