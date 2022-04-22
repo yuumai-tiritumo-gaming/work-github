@@ -7,7 +7,7 @@ module Public::OrdersHelper
     @quantity = 0
   
     order_item_all.each do |order_items|
-      @quantity += quantity  
+      @quantity += order_items.quantity  
     end
     @quantity
   end

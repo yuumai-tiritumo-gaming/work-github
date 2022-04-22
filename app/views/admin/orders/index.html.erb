@@ -18,21 +18,15 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td><%= link_to order.create_at,admin_oder_path(order.id) %></td>
+              <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"),admin_order_path(order.id) %></td>
               <td><%= order.name %></td>
-              <td><%= total_order_quantity(@order_items) %></td>
-              <td>
-                <% if item.is_selling == true %>
-                  <p class = "text-success">販売中</p>
-                <% else %>
-                  <p class = "text-black-50">販売停止中</p>
-                <% end %>
-              </td>
+              <td><%= total_order_quantity(order.order_items) %></td>
+              <td><%= order.trade_status_i18n %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
-  <%= paginate @items %>
+  <%= paginate @orders %>
 </div>
