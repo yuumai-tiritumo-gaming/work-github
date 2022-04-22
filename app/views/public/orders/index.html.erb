@@ -1,6 +1,19 @@
 <h1>ユーザー注文履歴一覧</h1>
-　　　　　　　　荒　巻　ス　カ　ル　チ　ノ　フ</br>
-　　　　　　　　　 _,,..,,,,_</br>
-　　　　　　　 　/ ,' 3　 `ヽｰっ</br>
-　　　　　　　　 l　　 ⊃　⌒_つ</br>
-　　　　　 　　　 `'ｰ---‐'''''"</br>
+<% @orders.each do |order| %>
+注文日</br>
+<%= order.created_at%></br>
+郵便番号/住所/宛名</br>
+<%= order.postal_code %>
+<%= order.address %>
+<%= order.name %></br>
+
+<% order_items = OrderItem.where(order_id: order.id) %>
+    注文商品
+    <% order_items.each do |order_item| %>
+    <% item = Item.find(order_item.item_id)%>
+    <%= item.name %>
+    <% end %></br>
+注文ステータス
+<%= order.trade_status %></br>
+<%= link_to "表示する",public_order_path(order) %>
+<% end %>
