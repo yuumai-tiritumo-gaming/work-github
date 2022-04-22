@@ -75,3 +75,18 @@ OrderItem.create!(
      making_status: 0,
         created_at: Time.zone.now
                 )
+
+Address.create!(
+     customer_id: 1,
+            name: "マージ太郎",
+     postal_code: "2224444",
+         address: "品川",
+      created_at: Time.zone.now
+               )
+Address.create!(
+     customer_id: 1,
+            name: "フェッチ花子",
+     postal_code: "3335555",
+         address: "渋谷",
+      created_at: Time.zone.now
+               )
