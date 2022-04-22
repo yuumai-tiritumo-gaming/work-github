@@ -15,8 +15,4 @@ class Admin::OrdersController < ApplicationController
     render :show
   end
   
-  #private
-  #def order_params
-    #params.require(:order).permit(:trade_status)
-  #end
 end
