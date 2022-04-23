@@ -33,7 +33,7 @@
   </tr>
   <tr>
     <th>請求金額</th>
-    <td><%= @order.total_payment%></td>
+    <td><%= total_price(@cart_items) %></td>
   </tr>
 </table>
 
@@ -51,7 +51,7 @@
   <%= f.hidden_field :name,           value: @order.name           %>
   <%= f.hidden_field :payment_method, value: @order.payment_method %>
   <%= f.hidden_field :trade_status,   value: @order.trade_status   %>
-  <%= f.hidden_field :total_payment,  value: @order.total_payment  %>
+  <%= f.hidden_field :total_payment,  value: total_price(@cart_items)  %>
   <%= f.hidden_field :postage,        value: @order.postage        %>
   <%= f.submit "注文を確定する", class: "btn btn-success" %>
 <% end %>

@@ -15,7 +15,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
-    # binding.pry
     if    params[:order][:address_info] == "0"
       @order = Order.new(order_params)
       @order.postal_code =    current_customer.postal_code
@@ -35,7 +34,6 @@ class Public::OrdersController < ApplicationController
       # まとめて書ける？@order = params[:postal_code,:address,:name]
     end
     @cart_items = current_customer.cart_items
-    binding.pry
   end
 
   def create
@@ -58,7 +56,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:customer_id, :payment_method, :trade_status, :total_payment, :postage)
-    # :postal_code, :address, :name, は一時的に排除
+    params.require(:order).permit(:customer_id, :payment_method, :trade_status, :total_payment, :postage, :postal_code, :address, :name)
   end
 end
