@@ -1,37 +1,59 @@
-<div class = "container">
-  <div class = "row">
-    <div class = "col">
-      <p>ジャンル検索</p>
+<div class = "row">
+  <div class = "col-2">
+    <table>
+      <thead>
+        <th>ジャンル一覧</th>
+      </thead>
+      <tbody>
       <% @genres.each do |genres| %>
-      <p><%= genres.name %></p>
+        <tr>
+          <td><%= genres.name %></td>
+        </tr>
       <% end %>
-    </div>
-    <div class = "col">
-      <p>
-      ようこそ、ながのCAKEへ！
-      このサイトは、ケーキ販売のECサイトになります。
-      会員ない方も商品の閲覧はできますが、
-      購入には会員登録が必要になります。
-      </p>
-    </div>
+      </tbody>
+    </table>
   </div>
-  <div class = "row">
-    <% @items.each do |item| %>
-    <div class = "col">
-      <% if item.item_image.attached? %>
-        <%= image_tag item.item_image, size: "200x200" %>
-      <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
-      <% end %>
-      <p><%= link_to item.name, public_item_path(item.id) %></p>
-      <p>￥<%= with_tax_price(item.non_tax_price) %></p>
-        </%>
-      <% if item.is_selling == true %>
-        <p class = "text-success">販売中</p>
-      <% else %>
-        <p class = "text-black-50">販売停止中</p>
+  <div class = "col-10">
+    <div class = "row">
+      <div class = "col-8 card">
+        <%= image_tag "top_image3.jpg", class: "card-img" %>
+          <div class="card-img-overlay d-flex">
+            <p class="text-center align-self-center mx-auto">
+              <b>
+              ようこそ、ながのCAKEへ！<br>
+              このサイトは、ケーキ販売のECサイトになります。<br>
+              会員ない方も商品の閲覧はできますが、<br>
+              購入には会員登録が必要になります。<br>
+              </b>
+            </p>
+          </div>
+      </div>
+      <div class = "col-2">
+      </div>
+    </div>
+    <div class = "row">
+      <% @items.each do |item| %>
+      <div class = "col-3">
+        <% if item.item_image.attached? %>
+          <%= image_tag item.item_image, size: "200x200" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+        <p><%= link_to item.name, public_item_path(item.id) %></p>
+        <p>￥<%= with_tax_price(item.non_tax_price) %></p>
+          </%>
+        <% if item.is_selling == true %>
+          <p class = "text-success">販売中</p>
+        <% else %>
+          <p class = "text-black-50">販売停止中</p>
+        <% end %>
+      </div>
       <% end %>
     </div>
-    <% end %>
+    <div class = "row align-items-right">
+      <div class = "col">
+        <p class = "text-right"><%= link_to "全てのの商品を見る>", public_items_path %></p>
+      </div>
+    </div>
   </div>
 </div>
