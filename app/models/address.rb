@@ -4,6 +4,7 @@ class Address < ApplicationRecord
 
   def view_address_info
     "〒" + self.postal_code + "   " + self.address + "   " + self.name
+    # ここどうするか？
   end
 
 end

@@ -1,17 +1,17 @@
 <h1>注文情報入力画面</h1>
+
 <%= form_with model: @order, url: new_public_order_path do |f| %>
 <%= f.hidden_field :customer_id, value: current_customer.id %>
-支払い方法
+<h5>支払い方法</h5>
 <%= f.radio_button :payment_method, 0 %>
 <%= f.radio_button :payment_method, 1 %>
 
 お届け先
   ご自身の住所
-  <%= f.radio_button :address_info, 0 %>
+    <%= f.radio_button :address_info, 0 %>
   登録済住所から選択
-  <%= f.radio_button :address_info, 1 %>
-  <!--ここフォーム内に複数表示させる技術がわからない-->
-  <%= f.collection_select :address, current_customer.addresses, :id, :view_address_info %>
+    <%= f.radio_button :address_info, 1 %>
+    <%= f.collection_select :address, current_customer.addresses, :id, :view_address_info %>
   新規登録
   <%= f.radio_button :address_info, 2 %>
     <%= form_with model: @address, url: new_public_order_path do |n| %>
