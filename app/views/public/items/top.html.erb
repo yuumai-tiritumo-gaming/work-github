@@ -23,8 +23,9 @@
       <% else %>
         <%= image_tag 'no_image', size: "200x200" %>
       <% end %>
-      <%= link_to item.name, public_item_path(item.id) %>
-      <%= with_tax_price(item.non_tax_price) %>
+      <p><%= link_to item.name, public_item_path(item.id) %></p>
+      <p>￥<%= with_tax_price(item.non_tax_price) %></p>
+        </%>
       <% if item.is_selling == true %>
         <p class = "text-success">販売中</p>
       <% else %>
