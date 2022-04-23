@@ -19,7 +19,7 @@ namespace :public, path: '/' do
     resource  "customers", path: '/customer', only: [:edit,:update]
     resources "addresses",                    only: [:index,:edit,:create,:destroy,:update]
     resources "orders",                       only: [:index,:show,:new,:create]
-    get       "/orders/check"                 => "orders#check"
+    post       "/orders/check"                 => "orders#check"
     get       "/orders/conform"               => "orders#conform"
     delete    "/cart_items/clear"             => "cart_items#clear"
     resources "cart_items",                   only: [:index,:create,:destroy,:update]

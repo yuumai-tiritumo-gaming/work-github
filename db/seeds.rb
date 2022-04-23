@@ -5,14 +5,14 @@ Admin.create!(
                created_at: Time.zone.now)
 
 Customer.create!(
-              family_name: "姓",
-               first_name: "名",
-              family_kana: "セイ",
-               first_kana: "メイ",
+              family_name: "Gitt",
+               first_name: "Hub太郎",
+              family_kana: "ギットト",
+               first_kana: "ハブタロウ",
                     email: "mail@gmail.com",
-              postal_code: "1234567",
-             phone_number: "1234567898",
-                  address: "Here",
+              postal_code: "4325266",
+             phone_number: "00078785656",
+                  address: "東京都品川区品川1-1-2",
                 is_active: "true",
                  password: "123456",
     password_confirmation: "123456",

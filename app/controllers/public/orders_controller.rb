@@ -15,26 +15,30 @@ class Public::OrdersController < ApplicationController
   end
 
   def check
-    @order = Order.new(order_params)
-    if    params[:address_info] == 0
+    binding.pry
+    if    params[:address_info] = "0"
+      @order = Order.new(order_params)
       @order.postal_code =    current_customer.postal_code
       @order.address     =    current_customer.address
       @order.name        = "#{current_customer.family_name}" + "#{current_customer.first_name}"
-    elsif params[:address_info] == 1
+    elsif params[:address_info] = "1"
+      @order = Order.new(order_params)
       @order.postal_code =    Address.find(params[:id]).postal_code
       @order.address     =    Address.find(params[:id]).address
       @order.name        = "#{Address.find(params[:id]).first_name}" + "#{Address.find(params[:id]).family_name}"
-    else #params[:address_info] == 2
+    else #params[:address_info] = "2"
+      @order = Order.new(order_params)
       @order.postal_code = params[:postal_code]
       @order.address     = params[:address]
       @order.name        = params[:name]
       # まとめて書ける？@order = params[:postal_code,:address,:name]
     end
+    binding.pry
     @cart_items = @order.customer.cart_items
   end
 
   def create
-    order = Order.create(order_conform_params)
+    order = Order.create(order_params)
     order.customer.cart_items.each do |cart_items|
       item = Item.find(cart_items.item_id)
       OrderItem.create(order_id: order.id,
@@ -57,7 +61,9 @@ class Public::OrdersController < ApplicationController
     # :postal_code, :address, :name, は一時的に排除
   end
   def order_conform_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :payment_method, :trade_status, :total_payment, :postage)
+    params.require(:order).permit(:customer_id,   :postal_code,    :address,
+                                  :name,          :payment_method, :trade_status,
+                                  :total_payment, :postage,        :address_info)
   end
 
 end
