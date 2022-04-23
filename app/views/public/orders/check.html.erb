@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% @cart_items.each do |cart_item| %>
-    <% item = Item.find(cart_item.id) %>
+    <% item = Item.find(cart_item.item_id) %>
     <tr>
       <td><%= image_tag item.get_item_image(20,20) %>
           <%= item.name %>
@@ -40,7 +40,7 @@
 <h3>支払方法</h3>
 <%= @order.payment_method_i18n %>
 <h3>お届け先</h3>
-<%= "〒" + @order.postal_code %><%= @order.address %></br>
+<%= "〒" + "#{@order.postal_code}" %><%= @order.address %></br>
 <%= @order.name %>
 
 <!--注文情報作成フォーム-->
