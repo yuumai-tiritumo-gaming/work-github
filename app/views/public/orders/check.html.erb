@@ -1,2 +1,57 @@
 <h1>注文情報最終確認画面</h1>
-注文確定ボタン
+<table class='table'>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+    <% item = Item.find(cart_item.item_id) %>
+    <tr>
+      <td><%= image_tag item.get_item_image(20,20) %>
+          <%= item.name %>
+      </td>
+      <td><%= with_tax_price(item.non_tax_price) %></td>
+      <td><%= cart_item.quantity %></td>
+      <td><%= subtotal(cart_item.quantity) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<table class='table'>
+  <tr>
+    <th>送料</th>
+    <td><%= @order.postage %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= total_price(@cart_items)%></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <td><%= (total_price_undelimited(@cart_items) + @order.postage).to_s(:delimited) %></td>
+  </tr>
+</table>
+
+<h3>支払方法</h3>
+<%= @order.payment_method_i18n %>
+<h3>お届け先</h3>
+<%= "〒" + "#{@order.postal_code}" %><%= @order.address %></br>
+<%= @order.name %>
+
+<!--注文情報作成フォーム-->
+<%= form_with model: @order, url: public_orders_path do |f| %>
+  <%= f.hidden_field :customer_id,    value: current_customer.id   %>
+  <%= f.hidden_field :postal_code,    value: @order.postal_code    %>
+  <%= f.hidden_field :address,        value: @order.address        %>
+  <%= f.hidden_field :name,           value: @order.name           %>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.hidden_field :trade_status,   value: @order.trade_status   %>
+  <%= f.hidden_field :total_payment,  value: total_price_undelimited(@cart_items) + @order.postage  %>
+  <%= f.hidden_field :postage,        value: @order.postage        %>
+  <%= f.submit "注文を確定する", class: "btn btn-success" %>
+<% end %>
