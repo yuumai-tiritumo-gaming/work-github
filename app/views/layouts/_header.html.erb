@@ -1,13 +1,13 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar navbar-light gnav" style="background-color: #f2a0a1;">
+  <nav class="navbar navbar-expand-lg navbar navbar-light " style="background-color: #f2a0a1;">
     <div class="container">
-
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <span>ながのCAKE</span>
+        <div class="d-flex align-items-start">
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <div class="d-flex align-items-center col">
-            ようこそ<%= "#{current_customer.family_name}" %>さん
+            <span>ようこそ<%= "#{current_customer.family_name}" %>さん</span>
           </div>
           <li class="nav-item">
             <%= link_to public_mypage_path, class: "nav-link text-light" do %>
@@ -78,14 +78,19 @@
           </li>
         <% end %>
         </ul>
+        </div>
+        <div class="d-flex align-items-end text-right">
         <ul class="navbar-nav mr-auto">
-         <li class="nav-item">
-              <%= form_with class: "rootpageSearchForm" do |form| %>
-                <%= form.text_field :keyword, placeholder: "Search", id: 'Search_Form', class: "form-control mr-sm-2" %>
-                <%= form.submit "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
-              <% end %>
-         </li>
+          <li class="nav-item ">
+            <%= form_with class: "rootpageSearchForm" do |form| %>
+              <%= form.text_field :keyword, placeholder: "Search", id: 'Search_Form', class: "form-control mr-sm-2" %>
+              <%= form.submit "Search", class: "btn btn-outline-success my-2 my-sm-0" %>
+            <% end %>
+           </li>
         </ul>
+        </div>
+        </div>
+
         </div>
       </div>
     </div>
