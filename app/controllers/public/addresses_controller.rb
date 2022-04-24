@@ -21,8 +21,11 @@ class Public::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    if @address.update(address_params)
-      redirect_to  public_addresses_path, notice: "会員情報を更新しました"
+    if @address.customer != current_customer
+      redirect_to public_mypage_path
+    elsif
+      @address.update(address_params)
+      redirect_to public_addresses_path, notice: "会員情報を更新しました"
     else
       render "edit"
     end
