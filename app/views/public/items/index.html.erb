@@ -1,33 +1,47 @@
-<div class = "container">
+<div class = "col-10 justify-content-end">
   <div class = "row">
-    <div class = "col-3">
-      <p>ジャンル検索</p>
+  <div class = "col-2 mx-5">
+    <table class="table table-borderless ">
+      <colgroup>
+        <col class="col-2">
+      </colgroup>
+      <thead class ="border">
+        <th>ジャンル検索</th>
+      </thead>
+      <tbody class ="border">
       <% @genres.each do |genres| %>
-      <p><%= genres.name %></p>
+        <tr>
+          <td><%= genres.name %></td>
+        </tr>
       <% end %>
-    </div>
-    <div class = "col-9">
-      <h2>商品一覧</h2><h3>(全<%= Item.all.count %>件中<%= @items.count %>件)</h3>
-      <div class = "row">
-      <% @items.each do |item| %>
-        <div class = "col-3">
-        <% if item.item_image.attached? %>
-          <%= image_tag item.item_image, size: "200x200" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "200x200" %>
-          </%>
-        <% end %>
-          <p><%= link_to item.name, public_item_path(item.id) %></p>
-          <p>￥<%= with_tax_price(item.non_tax_price) %></p>
-          <% if item.is_selling == true %>
-            <p class = "text-success">販売中</p>
-          <% else %>
-            <p class = "text-black-50">販売停止中</p>
-        <% end %>
-        </div>
+      </tbody>
+    </table>
+  </div>
+  <div class = "col-9">
+    <h2 class="display-5">商品一覧<span class = "h5">(全<%= Item.all.count %>件)</span></h2>
+    <div class = "row row-cols-4">
+    <% @items.each do |item| %>
+      <div class = "col-3">
+      <% if item.item_image.attached? %>
+        <%= image_tag item.item_image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+      <p><%= link_to item.name, public_item_path(item.id) %></p>
+      <p>￥<%= with_tax_price(item.non_tax_price) %></p>
+      <% if item.is_selling == true %>
+        <p class = "text-success">販売中</p>
+      <% else %>
+        <p class = "text-black-50">販売停止中</p>
       <% end %>
       </div>
-      <%= paginate @items %>
+    <% end %>
+    </div>
+    <div class = "row align-items-center">
+      <div class = "col-3 mx-auto" >
+        <%= paginate @items,  class: "pagination"%>
+      </div>
     </div>
   </div>
+</div>
 </div>

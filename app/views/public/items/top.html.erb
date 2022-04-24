@@ -1,10 +1,14 @@
-<div class = "row">
-  <div class = "col-2">
-    <table>
-      <thead>
-        <th>ジャンル一覧</th>
+<div class = "col-10 justify-content-end">
+  <div class = "row">
+  <div class = "col-sm-9 col-md-2 mx-5">
+    <table class="table table-borderless ">
+      <colgroup>
+        <col class="col-2">
+      </colgroup>
+      <thead class ="border">
+        <th>ジャンル検索</th>
       </thead>
-      <tbody>
+      <tbody class ="border">
       <% @genres.each do |genres| %>
         <tr>
           <td><%= genres.name %></td>
@@ -13,9 +17,9 @@
       </tbody>
     </table>
   </div>
-  <div class = "col-10">
+  <div class = "col-sm-12 col-md-8">
     <div class = "row">
-      <div class = "col-8 card">
+      <div class = "col-sm-12 col-md-8 card border-0">
         <%= image_tag "top_image3.jpg", class: "card-img" %>
           <div class="card-img-overlay d-flex">
             <p class="text-center align-self-center mx-auto">
@@ -28,12 +32,13 @@
             </p>
           </div>
       </div>
-      <div class = "col-2">
-      </div>
+    </div>
+    <div class = "row">
+      <h2><b>新着商品</b></h2>
     </div>
     <div class = "row">
       <% @items.each do |item| %>
-      <div class = "col-3">
+      <div class = "col">
         <% if item.item_image.attached? %>
           <%= image_tag item.item_image, size: "200x200" %>
         <% else %>
@@ -50,10 +55,11 @@
       </div>
       <% end %>
     </div>
-    <div class = "row align-items-right">
-      <div class = "col">
-        <p class = "text-right"><%= link_to "全てのの商品を見る>", public_items_path %></p>
+    <div class = "flex-row-reverse">
+      <div class = "col d-flex justify-content-end">
+        <p><%= link_to "全てのの商品を見る>", public_items_path %></p>
       </div>
     </div>
   </div>
+</div>
 </div>

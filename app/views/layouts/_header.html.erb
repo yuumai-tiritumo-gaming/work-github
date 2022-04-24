@@ -1,90 +1,115 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <span>ながのCAKE</span>
-
+    <div class = "container-fluid">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-        <% if customer_signed_in? %>
-          <div class="d-flex align-items-center">
-            ようこそ<%= "#{current_customer.family_name}" %>さん
+      <div class = "collapse navbar-collapse row mx-0" id="navbarNavDropdown">
+        <div class = "col-2">
+          <span>ながのCAKE</span>
+        </div>
+      <% if customer_signed_in? %>
+        <div class = "col d-flex align-items-center justify-content-center">
+          ようこそ<%= "#{current_customer.family_name}" %>さん
+        </div>
+        <div class = "col"><!--リンクと検索窓が入ったカラムのスタートここフレックスng-->
+          <div class ="flex-row-reverse">
+            <div class = "col d-flex">
+              <ul class="navbar-nav ml-auto">
+                <li>
+                  <%= link_to public_mypage_path, class: "nav-link text-light" do %>
+                    マイページ
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to public_items_path, class: "nav-link text-light" do %>
+                    商品一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to public_cart_items_path, class: "nav-link text-light" do %>
+                    カート
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
+                    ログアウト
+                  <% end %>
+                </li>
+              </ul>
+            </div>
           </div>
-          <li>
-            <%= link_to public_mypage_path, class: "nav-link text-light" do %>
-              マイページ
-            <% end %>
-          </li>
-          <li>
-            <%= link_to public_items_path, class: "nav-link text-light" do %>
-              商品一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to public_cart_items_path, class: "nav-link text-light" do %>
-              カート
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
-              ログアウト
-            <% end %>
-          </li>
-        <% elsif admin_signed_in? %>
-          <li>
-            <%= link_to admin_items_path, class: "nav-link text-light" do %>
-              商品一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_customers_path, class: "nav-link text-light" do %>
-              会員一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_path, class: "nav-link text-light" do %>
-              注文履歴一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_genres_path, class: "nav-link text-light" do %>
-              ジャンル一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do %>
-              ログアウト
-            <% end %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to public_about_path, class: "nav-link text-light" do %>
-              About
-            <% end %>
-          </li>
-          <li>
-            <%= link_to public_items_path, class: "nav-link text-light" do %>
-              商品一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
-              新規登録
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
-              ログイン
-            <% end %>
-          </li>
-        <% end %>
-        </ul>
-        <%= form_with(url: public_root_path, local: true, method: :get, class: "rootpageSearchForm") do |form| %>
-          <%= form.text_field :keyword, placeholder: "Search", class: "rootpageSearchForm__content" %>
-          <%= form.submit "検索", class: "rootpageSearchForm__bottum" %>
-        <% end %>
+      <% elsif admin_signed_in? %>
+        <div class = "col"><!--リンクと検索窓が入ったカラムのスタートここフレックスng-->
+          <div class ="flex-row-reverse">
+            <div class = "col d-flex">
+              <ul class="navbar-nav ml-auto">
+                <li>
+                  <%= link_to admin_items_path, class: "nav-link text-light" do %>
+                    商品一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to admin_customers_path, class: "nav-link text-light" do %>
+                    会員一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to admin_path, class: "nav-link text-light" do %>
+                    注文履歴一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to admin_genres_path, class: "nav-link text-light" do %>
+                    ジャンル一覧
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-light" do %>
+                    ログアウト
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+      <% else %>
+            <div class = "col"><!--リンクと検索窓が入ったカラムのスタートここフレックスng-->
+            <div class ="flex-row-reverse">
+            <div class = "col d-flex">
+              <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to public_about_path, class: "nav-link text-light" do %>
+                  About
+                <% end %>
+              </li>
+              <li>
+                <%= link_to public_items_path, class: "nav-link text-light" do %>
+                  商品一覧
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
+                  新規登録
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
+                  ログイン
+                <% end %>
+              </li>
+              </ul>
+              </div>
+            </div>
+      <% end %>
+          <div class ="flex-row-reverse">
+            <div class = "col d-flex justify-content-end">
+              <%= form_with(url: public_root_path, local: true, method: :get, class: "rootpageSearchForm") do |form| %>
+                <%= form.text_field :keyword, placeholder: "Search", class: "rootpageSearchForm__content" %>
+                <%= form.submit "検索", class: "rootpageSearchForm__bottum" %>
+              <% end %>
+            </div>
+          </div>
+        </div><!--リンクと検索窓が入ったカラムのスタート-->
       </div>
     </div>
   </nav>
