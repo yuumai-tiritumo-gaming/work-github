@@ -41,9 +41,7 @@ class Public::SessionsController < Devise::SessionsController
         flash[:error] = "パスワードが正しくありません。"
       end
 
-      # elsif (@customer.valid_password != (params[:customer][:password])
-      #flash[:error] = "メールアドレスかパスワードに誤りがあります。"
-      # redirect_to new_customer_session_path
+
     else
       flash[:error] = "有効なメールアドレスではありません。"
     end
