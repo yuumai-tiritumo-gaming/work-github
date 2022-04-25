@@ -3,61 +3,60 @@
     <h3 class = "bg-light" style="background-color: #d3d3d3;"><b>会員情報編集</b></h3>
   </div>
 </div>
-<div class='row'>
-  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
-    <% if @customer.errors.any? %>
+<% if @customer.errors.any? %>
+  <div class='row'>
+    <div class="col-sm-6">
+    <div class="col-sm-6 px-5 px-sm-0 mx-auto">
       <%= @customer.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @customer.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
-
-<table>
-  <tbody>
-    <%= form_with model: @customer, url: public_customers_path, local:true do |f| %>
-      <tr><div class="form-group">
-        <td><%= f.label :family_name, "氏名" %></td>
-        <td>
-          <%= f.text_field :family_name, class: "form-control" %>
-          <%= f.text_field :first_name, class: "form-control" %>
-        </td>
-      </div></tr>
-      <tr><div class="form-group">
-        <td><%= f.label :family_kana, "フリガナ" %></td>
-        <td>
-          <%= f.text_field :family_kana, class: "form-control" %>
-          <%= f.text_field :first_kana, class: "form-control" %>
-        </td>
-      </div></tr>
-      <tr><div class="form-group">
-        <td><%= f.label :postal_code, "郵便番号" %></td>
-        <td><%= f.text_field :postal_code, class: "form-control" %></td>
-      </div></tr>
-      <tr><div class="form-group">
-        <td><%= f.label :address, "住所" %></td>
-        <td><%= f.text_field :address, class: "form-control" %></td>
-      </div></tr>
-      <tr><div class="form-group">
-        <td><%= f.label :phone_number, "電話番号" %></td>
-        <td><%= f.text_field :phone_number, class: "form-control" %></td>
-      </div></tr>
-      <tr><div class="form-group">
-        <td><%= f.label :email, "メールアドレス" %></td>
-        <td><%= f.text_field :email, class: "form-control" %></td>
-      </div></tr>
-      <tr><div class="form-group">
-        <td><%= f.submit "変更内容を保存", class: "btn btn-success" %></td>
-        <td>
-          <%= link_to public_customer_confirmation_path, class: "btn btn-danger" do %>
-            退会する
+        <ul>
+          <% @customer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
           <% end %>
-        </td>
-      </div></tr>
-    <% end %>
-  </tbody>
-</table>
-</div>
-</div>
+        </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_with model: @customer, url: public_customers_path, local:true do |f| %>
+  <div class="row">
+    <%= f.label :family_name, "氏名", class: "col-sm-2 mx-3 my-1" %>
+    <%= f.text_field :family_name, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <%= f.text_field :first_name, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <div class="col-sm-6"></div>
+  </div>
+  <div class="row">
+    <%= f.label :family_kana, "フリガナ", class: "col-sm-2 mx-3 my-1 " %>
+    <%= f.text_field :family_kana, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <%= f.text_field :first_kana, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <div class="col-sm-6"></div>
+  </div>
+  <div class="row">
+    <%= f.label :postal_code, "郵便番号", class: "col-sm-2 mx-3 my-1" %>
+    <%= f.text_field :postal_code, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <div class="col-sm-8"></div>
+  </div>
+  <div class="row">
+    <%= f.label :address, "住所", class: "col-sm-2 mx-3 my-1" %>
+    <%= f.text_field :address, class: "col-sm-5 mx-3 my-1 form-control" %>
+    <div class="col-sm-5"></div>
+  </div>
+  <div class="row">
+    <%= f.label :phone_number, "電話番号", class: "col-sm-2 mx-3 my-1" %>
+    <%= f.text_field :phone_number, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <div class="col-sm-8"></div>
+  </div>
+  <div class="row">
+    <%= f.label :email, "メールアドレス", class: "col-sm-2 mx-3 my-1" %>
+    <%= f.text_field :email, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <div class="col-sm-8"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 mx-3 my-1"></div>
+    <%= f.submit "変更内容を保存", class: "btn btn-success col-sm-2 mx-3 my-1 ml-2" %>
+    <div class="col-sm-2"><%= link_to public_customer_confirmation_path, class: "btn btn-danger mx-3 my-1" do %>
+      退会する
+    <% end %></div>
+
+  </div>
+<% end %>

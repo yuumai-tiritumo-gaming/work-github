@@ -16,6 +16,7 @@ namespace :public, path: '/' do
     get       "/customer/confirmation"        => "customers#confirmation"
     get       "/mypage"                       => "customers#show"
     patch     "/mypage"                       => "customers#unsubscribe"
+    get       "/customer"                     => "customers#edit"
     resource  "customers", path: '/customer', only: [:edit,:update]
     resources "addresses",                    only: [:index,:edit,:create,:destroy,:update]
     get       "/orders/conform"               => "orders#conform"
