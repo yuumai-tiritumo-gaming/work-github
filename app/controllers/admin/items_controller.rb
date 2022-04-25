@@ -11,10 +11,11 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @genre = Genre.all
+    #binding.pry
     if @item.save
       redirect_to admin_item_path(@item)
     else
+      @genre = Genre.all
       render :new
     end
 

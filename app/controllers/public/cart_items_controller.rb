@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
-  
+  before_action :customer_signed_in?, only: [:create]
+
   def create
     @cart_item = CartItem.new(cart_item_params)
     if @cart_item.save
@@ -10,12 +11,12 @@ class Public::CartItemsController < ApplicationController
       render "public/items/show"
     end
   end
-  
+
   def index
     @cart_items =  current_customer.cart_items
   end
 
-  
+
 
   def clear
     current_customer.cart_items.destroy_all

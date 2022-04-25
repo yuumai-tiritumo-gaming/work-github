@@ -1,8 +1,10 @@
 <div class = "row">
   <div class = "col-2">
-    <table>
+    <table frame = "box">
       <thead>
-        <th>ジャンル一覧</th>
+        <tr>
+          <th style="border: 1px solid black;">ジャンル一覧</th>
+        </tr>
       </thead>
       <tbody>
       <% @genres.each do |genres| %>
@@ -13,9 +15,9 @@
       </tbody>
     </table>
   </div>
-  <div class = "col-10">
+  <div class = "col-sm-10 col-xl-8">
     <div class = "row">
-      <div class = "col-8 card">
+      <div class = "col-8 card border-0">
         <%= image_tag "top_image3.jpg", class: "card-img" %>
           <div class="card-img-overlay d-flex">
             <p class="text-center align-self-center mx-auto">
@@ -30,14 +32,18 @@
       </div>
       <div class = "col-2">
       </div>
+      <div class = "col-2">
+      </div>
     </div>
     <div class = "row">
       <% @items.each do |item| %>
-      <div class = "col-3">
-        <% if item.item_image.attached? %>
-          <%= image_tag item.item_image, size: "200x200" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "200x200" %>
+      <div class = "col-xl-3">
+        <%= link_to public_item_path(item.id) do %>
+          <% if item.item_image.attached? %>
+            <%= image_tag item.item_image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+          <% end %>
         <% end %>
         <p><%= link_to item.name, public_item_path(item.id) %></p>
         <p>￥<%= with_tax_price(item.non_tax_price) %></p>
@@ -52,7 +58,7 @@
     </div>
     <div class = "row align-items-right">
       <div class = "col">
-        <p class = "text-right"><%= link_to "全てのの商品を見る>", public_items_path %></p>
+        <p class = "text-right"><%= link_to "全ての商品を見る>", public_items_path %></p>
       </div>
     </div>
   </div>

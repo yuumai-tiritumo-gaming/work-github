@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row">
     <div class = "col">
-      <h2>商品編集</h2>
+      <h2>商品新規登録</h2>
     </div>
     <div class = "col">
       <p><%= render 'error', item: @item %></p>
@@ -53,9 +53,9 @@
       <p>販売ステータス</p>
     </div>
     <div class = "col-4">
-      <%= f.radio_button :is_selling, "true" %>
+      <%= f.radio_button :is_selling, true %>
       <%= f.label :is_selling, "販売中" %>
-      <%= f.radio_button :is_selling, "false" %>
+      <%= f.radio_button :is_selling, false %>
       <%= f.label :is_selling, "販売停止中" %>
     </div>
   </div>

@@ -24,25 +24,30 @@ class Public::SessionsController < Devise::SessionsController
     public_root_path
   end
 
-  
+
   def after_sign_out_path_for(resource)
     public_root_path
   end
 
-  
+
   def reject_customer
     @customer = Customer.find_by(email: params[:customer][:email].downcase)
     if @customer
-      
+
       if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
         flash[:error] = "退会済みです。"
         redirect_to new_customer_session_path
+      elsif @customer.valid_password?(params[:customer][:password]) != true
+        flash[:error] = "パスワードが正しくありません。"
       end
-      
+
+      # elsif (@customer.valid_password != (params[:customer][:password])
+      #flash[:error] = "メールアドレスかパスワードに誤りがあります。"
+      # redirect_to new_customer_session_path
     else
-      flash[:error] = "メールアドレスを入力してください。"
+      flash[:error] = "有効なメールアドレスではありません。"
     end
-    
+
   end
 
   # If you have extra params to permit, append them to the sanitizer.

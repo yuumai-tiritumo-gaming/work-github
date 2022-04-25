@@ -23,7 +23,7 @@
           配送先
         </div>
         <div class = "col-8">
-          <%= @order.postal_code %><%= @order.address %><br>
+          <span>〒</span><%= @order.postal_code %><span> </span><%= @order.address %><br>
           <%= @order.name %>
         </div>
       </div>
@@ -42,7 +42,7 @@
         <div class = "col-8">
           <%= form_with url: admin_order_path(@order), method: :patch , local:true do |f| %>
             <%= f.select :trade_status, [['入金待ち', 0], ['入金確認', 1], ['製作中', 2], ['発送準備中', 3], ['発送済み', 4]], selected: "#{@order.trade_status_before_type_cast}"  %>
-            <%= f.submit class: 'btn btn-success' %>
+            <%= f.submit "更新", class: 'btn btn-success' %>
           <% end %>
         </div>
       </div>
@@ -70,7 +70,7 @@
         <td><%= subtotal(order_item.quantity) %></td>
         <td><%= form_with url: admin_order_item_path(order_item.id), method: :patch , local:true do |f| %>
           <%= f.select :making_status, [['着手不可', 0], ['製作待ち', 1], ['製作中', 2], ['製作完了', 3]], selected: "#{order_item.making_status_before_type_cast}" %>
-          <%= f.submit class: 'btn btn-success' %>
+          <%= f.submit "更新", class: 'btn btn-success' %>
           <% end %>
         </td>
       </tr>
@@ -84,7 +84,7 @@
           商品合計
         </div>
         <div class = "col-3">
-          <%= @order.total_payment %>円
+          <%= @order.total_payment.to_s(:delimited) %>円
         </div>
       </div>
       <div class = "row">
@@ -92,7 +92,7 @@
           送料
         </div>
         <div class = "col-3">
-          <%= @order.postage %>円
+          <%= @order.postage.to_s(:delimited) %>円
         </div>
       </div>
       <div class = "row">
@@ -100,7 +100,7 @@
           請求金額合計
         </div>
         <div class = "col-3">
-          <%= @order.total_payment + @order.postage %>円
+          <%= (@order.total_payment + @order.postage).to_s(:delimited) %>円
         </div>
       </div>
     </div>
