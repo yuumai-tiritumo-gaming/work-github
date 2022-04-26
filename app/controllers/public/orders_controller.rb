@@ -1,6 +1,8 @@
 class Public::OrdersController < ApplicationController
+  before_action :valid_cart?, only: [:create]
+
   def show
-          @order = Order.find(params[:id])
+    @order       = Order.find(params[:id])
     @order_items = @order.order_items
   end
 
@@ -9,7 +11,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def new
-      @order = Order.new
+      @order     = Order.new
       @addresses = current_customer.addresses
     # 中央揃えと=揃えどっちが見やすいかな
   end
@@ -58,4 +60,11 @@ class Public::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:customer_id, :payment_method, :trade_status, :total_payment, :postage, :postal_code, :address, :name)
   end
+
+  def valid_cart?
+    unless current_customer.cart_items.exists?
+      redirect_to public_root_path
+    end
+  end
+
 end
