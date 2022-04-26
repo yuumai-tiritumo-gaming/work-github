@@ -29,7 +29,7 @@
         <div class = "col-sm-5">
           <h3><%= @item.name %></h3>
           <p><%= @item.body %></p>
-          <h3>￥<%= with_tax_price(@item.non_tax_price) %><sapn class = "h6">(税込)</sapn></h3>
+          <h3>￥<%= with_tax_price(@item.non_tax_price) %><span class = "h6">(税込)</span></h3>
           <% if @item.is_selling == true %>
             <b class = "text-success">販売中</b>
               <%= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>
