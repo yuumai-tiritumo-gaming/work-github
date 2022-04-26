@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :valid_cart?, only: [:create]
+  before_action :valid_cart?, only: [:new]
 
   def show
     @order       = Order.find(params[:id])
