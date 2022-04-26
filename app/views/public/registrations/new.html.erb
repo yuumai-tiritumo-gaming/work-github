@@ -1,129 +1,132 @@
-<div class='container'>
-  <h1>新規会員登録</h1>
+<%= render "public/shared/error_messages", resource: resource %>
+  <div class = "col-sm-4 px-5 pb-5 ">
+    <h3 class ="text-center mx-1" style="background-color: #d3d3d3;"><b>新規会員登録</b></h3>
+  </div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-1">
     <div class="col-3">
       名前
     </div>
-    <div class="col-1">
-  <%= render "public/shared/error_messages", resource: resource %>
-      (姓)
+    <div class="col-1 text-right">
+      <%= f.label :family_name, "(姓)" %>
     </div>
     <div class="col-3">
-      <%= f.text_field :family_name, autofocus: true, placeholder: "令和", class: "family_name" %>
+      <%= f.text_field :family_name, autofocus: true, autocomplete: "off", placeholder: "令和", class: "family_name form-control" %>
     </div>
-    <div class="col-1">
-      (名)
+    <div class="col-1 text-right">
+      <%= f.label :first_name, "(名)" %>
     </div>
     <div class="col-3">
-      <%= f.text_field :first_name, placeholder: "道子", class: "first_name" %>
+      <%= f.text_field :first_name, autocomplete: "off", placeholder: "道子", class: "first_name form-control" %>
     </div>
   </div>
 
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-1">
     <div class="col-3">
       フリガナ
     </div>
-    <div class="col-1">
-      (セイ)
+    <div class="col-1 text-right">
+      <%= f.label :family_kana, "(セイ)" %>
     </div>
     <div class="col-3">
-      <%= f.text_field :family_kana, placeholder: "レイワ", class: "family_kana" %>
+      <%= f.text_field :family_kana, autocomplete: "off", placeholder: "レイワ", class: "family_kana form-control" %>
     </div>
-    <div class="col-1">
-      (メイ)
+    <div class="col-1 text-right">
+      <%= f.label :first_kana, "(メイ)" %>
     </div>
     <div class="col-3">
-      <%= f.text_field :first_kana, placeholder: "ミチコ", class: "first_kana" %>
+      <%= f.text_field :first_kana, autocomplete: "off", placeholder: "ミチコ", class: "first_kana form-control" %>
     </div>
   </div>
 
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-1">
     <div class="col-3">
-      メールアドレス
+      <%= f.label :email, "メールアドレス" %>
+    </div>
+    <div class="col-1">
+      
+    </div>
+    <div class="col-sm-3 col-7">
+    <%= f.email_field :email, autocomplete: "off", placeholder: "sample@example.com", class: "email form-control" %>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center p-1">
+    <div class="col-3">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
     </div>
     <div class="col-1">
 
     </div>
-    <div class="col-3">
-    <%= f.email_field :email, placeholder: "sample@example.com", class: "email" %>
-    </div>
-  </div>
-
-  <div class="row g-3 align-items-center">
-    <div class="col-3">
-      郵便番号(ハイフンなし)
-    </div>
-    <div class="col-1">
-
-    </div>
-    <div class="col-3">
-    <%= f.text_field :postal_code, placeholder: "0000000", class: "postal_code" %>
+    <div class="col-sm-3 col-7">
+    <%= f.text_field :postal_code, autocomplete: "off", placeholder: "0000000", class: "postal_code form-control" %>
     </div>
   </div>
 
 
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-1">
     <div class="col-3">
-      住所
+      <%= f.label :address, "住所" %>
     </div>
     <div class="col-1">
 
     </div>
     <div class="col-7">
-    <%= f.text_field :address, :size=>"72", placeholder: "東京都渋谷区代々木神園町0-0", class: "address" %>
+    <%= f.text_field :address, autocomplete: "off", placeholder: "東京都渋谷区代々木神園町0-0", class: "address form-control" %>
     </div>
   </div>
 
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-1">
     <div class="col-3">
-      電話番号
+      <%= f.label :phone_number, "電話番号(ハイフンなし)" %>
     </div>
     <div class="col-1">
 
     </div>
-    <div class="col-3">
-    <%= f.text_field :phone_number, placeholder: "000000000000", class: "phone_number" %>
+    <div class="col-sm-3 col-7">
+    <%= f.text_field :phone_number, placeholder: "000000000000", class: "phone_number form-control" %>
     </div>
   </div>
 
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-1">
     <div class="col-3">
-      パスワード(6文字以上)
+      <%= f.label :password, "パスワード(6文字以上)" %>
     </div>
     <div class="col-1">
 
     </div>
-    <div class="col-3">
-    <%= f.password_field :password, autocomplete: "off", class: "password" %>
+    <div class="col-sm-3 col-7">
+    <%= f.password_field :password, autocomplete: "off", class: "password form-control" %>
     </div>
   </div>
 
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-1">
     <div class="col-3">
-      パスワード(確認用)
+      <%= f.label :password_confirmation, "パスワード(確認用)" %>
     </div>
     <div class="col-1">
 
     </div>
-    <div class="col-3">
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm" %>
+    <div class="col-sm-3 col-7">
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm form-control" %>
     </div>
   </div>
 
-  <div class="row g-3 align-items-center">
+  <div class="row g-3 align-items-center p-2">
     <div class="col-3">
 
     </div>
     <div class="col-1">
 
     </div>
-    <div class="col-3">
-      <%= f.submit "Sign up" ,class: 'btn btn-sm btn-success' %>
+    <div class="col-sm-3 col-7">
+      <%= f.submit "新規登録ボタン" ,class: 'btn btn-sm btn-success form-control ' %>
     </div>
   </div>
   <% end %>
-  <h1>既に登録済みの方</h1>
+  <div class = "col-sm-4 p-3 ">
+    <h3 class ="text-center mx-4" style="background-color: #d3d3d3;"><b>既に登録済みの方</b></h3>
+  </div>
+  <div class = "col-sm-6 text-center">
   <%= render "public/shared/links" %><span>からログインしてください</span>
-</div>
+  </div>

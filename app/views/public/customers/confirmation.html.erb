@@ -1,21 +1,25 @@
-<b>本当に退会しますか？</b>
-<p>退会すると、会員登録情報や</p>
-<p>これまでの購入履歴が閲覧できなくなります。</p>
-<p>退会する場合は、「退会する」をクリックしてください。</p>
-
-<table>
-  <tbody>
-    <tr>
-      <td>
-        <%= link_to public_mypage_path, class: "btn btn-primary" do %>
-          退会しない
-        <% end %>
-      </td>
-      <td>
-        <%= link_to public_mypage_path, method: :patch, class: "btn btn-danger" do %>
-          退会する
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+   <div class="col-sm-4"></div>
+<h5 class="col-sm-4 d-flex text-center justify-content-center"><b>本当に退会しますか？</b></h5>
+<div class="col-sm-4"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 d-flex text-center justify-content-center">
+    <p>退会すると、会員登録情報や<br>
+       これまでの購入履歴が閲覧できなくなります。<br>
+       退会する場合は、「退会する」をクリックしてください。</p>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+<div class="row">
+  <div class="col-sm-12 text-center justify-content-center">
+    <%= link_to public_mypage_path, class: "btn btn-primary col-sm-2 mx-3" do %>
+      退会しない
+    <% end %>
+    <%= link_to public_mypage_path, method: :patch, class: "btn btn-danger col-sm-2 mx-3" do %>
+      退会する
+    <% end %>
+  </div>
+</div>

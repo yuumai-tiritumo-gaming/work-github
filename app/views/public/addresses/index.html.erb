@@ -1,40 +1,40 @@
-<h3>配送先登録/一覧</h3>
-<%= flash[:notice] %>
-<%= form_with model: @address, url: public_addresses_path, method: :post, local:true do |f| %>
- <div class="field">
-    <label>郵便番号</label>
-    <%= f.text_field :postal_code, placeholder: "0000000" %>
+<div class="row">
+  <div class="col-sm-3 d-flex justify-content-center mb-3">
+    <h3 class = "bg-light" style="background-color: #d3d3d3;"><b>配送先登録/一覧</b></h3>
   </div>
+</div>
 
-  <div class="field">
-    <label>住所</label>
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町" %>
-  </div>
-
-  <div class="field">
-    <label>宛名</label>
-    <%= f.text_field :name, placeholder: "令和道子" %>
-  </div>
-  <%= f.hidden_field :customer_id, :value => current_customer.id %>
-  <div class="field">
-    <%= f.submit "新規登録", class: "btn btn-success" %>
-  </div>
-<% end %>
-
-<table class="table table-bordered">
+  <%= form_with model: @address, url: public_addresses_path, method: :post, local:true do |f| %>
+    <div class="row">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-sm-3" %>
+      <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control col-sm-3" %>
+    </div>
+    <div class="row">
+      <%= f.label :address, "住所", class: "col-sm-3 my-2" %>
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町", class: "form-control col-sm-6 my-2" %>
+    </div>
+    <div class="row">
+      <%= f.label :name, "宛名", class: "col-sm-3" %>
+      <%= f.text_field :name, placeholder: "令和道子", class: "form-control col-sm-3" %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+    <div class="col-sm-3"></div>
+      <%= f.submit "新規登録", class: "btn btn-success" %>
+  <% end %>
+<br>
+<table class="table table-bordered mt-5">
   <tbody>
-    <tr>
-      <td>郵便番号</td>
-      <td>住所</td>
-      <td>宛名</td>
-      <td></td>
+    <tr style="background-color: #d3d3d3;">
+      <td class="col-sm-1">郵便番号</td>
+      <td class="col-sm-6">住所</td>
+      <td class="col-sm-2">宛名</td>
+      <td class="col-sm-3"></td>
     </tr>
     <% @addresses.each do |address| %>
     <tr>
       <td><%= address.postal_code %></td>
       <td><%= address.address %></td>
       <td><%= address.name %></td>
-      <td>
+      <td class="text-center">
         <%= link_to edit_public_address_path(address), class: "btn btn-success" do %>
           編集する
         <% end %>

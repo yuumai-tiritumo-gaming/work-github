@@ -1,33 +1,48 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-3">
-      <p>ジャンル検索</p>
+    <div class = "col-sm-3">
+    <table frame = "box">
+      <thead>
+        <tr>
+          <th class = "col-sm-1 text-center" style="border: 1px solid black;">ジャンル検索</th>
+        </tr>
+      </thead>
+      <tbody>
       <% @genres.each do |genres| %>
-      <p><%= genres.name %></p>
+        <tr>
+          <td class = "col-sm-1"  style="word-break: break-all;"><%= genres.name %></td>
+        </tr>
       <% end %>
-    </div>
-    <div class = "col-9">
-      <h2>商品一覧</h2><h3>(全<%= Item.all.count %>件中<%= @items.count %>件)</h3>
+      </tbody>
+    </table>
+  </div>
+    <div class = "col-sm-9">
+      <h2><b>商品一覧</b><span class = "h4">(全<%= Item.all.count %>件)</span></h2>
       <div class = "row">
       <% @items.each do |item| %>
-        <div class = "col-3">
-        <% if item.item_image.attached? %>
-          <%= image_tag item.item_image, size: "200x200" %>
-        <% else %>
-          <%= image_tag 'no_image', size: "200x200" %>
-          </%>
+        <div class = "col-sm-3">
+        <%= link_to public_item_path(item.id) do %>
+          <% if item.item_image.attached? %>
+            <%= image_tag item.item_image, size: "180x135" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "180x135" %>
+          <% end %>
         <% end %>
           <p><%= link_to item.name, public_item_path(item.id) %></p>
           <p>￥<%= with_tax_price(item.non_tax_price) %></p>
           <% if item.is_selling == true %>
-            <p class = "text-success">販売中</p>
+            <b class = "text-success">販売中</b>
           <% else %>
-            <p class = "text-black-50">販売停止中</p>
+            <b class = "text-black-50">販売停止中</b>
         <% end %>
         </div>
       <% end %>
       </div>
-      <%= paginate @items %>
+      <div class ="row justify-content-center">
+        <div class ="col-sm-3">
+          <%= paginate @items %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
