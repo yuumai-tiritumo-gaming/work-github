@@ -10,16 +10,26 @@
 </div>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row g-3 justify-content-center">
-        <%= f.label :email, "メールアドレス", class: "col-2" %>
-        <%= f.email_field :email, placeholder: "sample@example.com", class: "form-control col-sm-4" %>
+      <div class = "col-sm-2 col-4">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class = "col-sm-4 col-8">
+        <%= f.email_field :email, placeholder: "sample@example.com", class: "form-control" %>
+      </div>
     </div>
     <div class="row g-3 justify-content-center my-2">
-        <%= f.label :password, "パスワード", class: "col-2" %>
-        <%= f.password_field :password, autocomplete: "off", class: "form-control col-sm-4" %>
+      <div class = "col-sm-2 col-4">
+        <%= f.label :password, "パスワード" %>
+      </div>
+      <div class = "col-sm-4 col-8">
+        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+      </div>
     </div>
     <div class="row g-3 justify-content-center my-2">
         <div class ="col-2"></div>
-        <%= f.submit "ログイン",class: "btn btn-sm btn-primary form-control col-sm-2 col-7 " %>
+        <div class = "col-sm-2 col-7">
+          <%= f.submit "ログイン",class: "btn btn-sm btn-primary form-control " %>
+        </div>
         <div class ="col-2"></div>
     </div>
     <% end %>
@@ -31,4 +41,4 @@
         <%= render "public/shared/links" %><span>から新規登録を行ってください</span>
       </div>
   </div>
-  </div>
+</div>
