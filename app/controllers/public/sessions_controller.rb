@@ -43,7 +43,7 @@ class Public::SessionsController < Devise::SessionsController
 
 
     else
-      flash[:error] = "有効なメールアドレスではありません。"
+      flash[:alert] = "有効なメールアドレスではありません。"
     end
 
   end
