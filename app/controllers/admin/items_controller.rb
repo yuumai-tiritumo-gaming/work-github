@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  before_action :valid_admin?
   def new
     @item = Item.new
     @genre = Genre.all
@@ -11,10 +12,11 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @genre = Genre.all
     if @item.save
-      redirect_to admin_item_path(@item)
+      redirect_to admin_item_path(@item), notice: "商品を追加しました"
     else
+      @genre = Genre.all
+      flash.now[:alert] = "全てのフォームに入力してください"
       render :new
     end
 
@@ -33,8 +35,9 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @genre = Genre.all
     if @item.update(item_params)
-      redirect_to admin_item_path(@item)
+      redirect_to admin_item_path(@item), notice: "商品情報を更新しました"
     else
+      flash.now[:alert] = "全てのフォームに入力してください"
       render :edit
     end
   end
