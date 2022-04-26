@@ -3,44 +3,44 @@
     <h3 class ="text-center mx-1" style="background-color: #d3d3d3;"><b>注文履歴一覧</b></h3>
   </div>
 </div>
-<div class = "row">
+<div class = "row mb-3">
   <div class = "col-12">
-    <div class = "row">
+    <div class = "row my-1">
       <div class = "col-2">
-        購入者
+        <b>購入者</b>
         </div>
       <div class = "col-8">
-        <%= @order.customer.family_name %><span> </span></%><%= @order.customer.first_name %>
+        <%= link_to "#{@order.customer.family_name+" "+@order.customer.first_name}",admin_customer_path(@order.customer) %>
       </div>
     </div>
-    <div class = "row">
+    <div class = "row my-1">
       <div class = "col-2">
-        注文日
+        <b>注文日</b>
       </div>
       <div class = "col-8">
         <%= @order.created_at.strftime('%Y/%m/%d') %>
       </div>
     </div>
-    <div class = "row">
+    <div class = "row my-1">
       <div class = "col-2">
-        配送先
+        <b>配送先</b>
       </div>
       <div class = "col-8">
         <span>〒</span><%= @order.postal_code %><span> </span><%= @order.address %><br>
         <%= @order.name %>
       </div>
     </div>
-    <div class = "row">
+    <div class = "row my-1">
       <div class = "col-2">
-        支払方法
+        <b>支払方法</b>
       </div>
       <div class = "col-8">
         <%= @order.payment_method_i18n %>
       </div>
     </div>
-    <div class = "row">
+    <div class = "row my-1">
       <div class = "col-2">
-        注文ステータス
+        <b>注文ステータス</b>
       </div>
       <div class = "col-8">
         <%= form_with url: admin_order_path(@order), method: :patch , local:true do |f| %>
@@ -51,13 +51,13 @@
     </div>
   </div>
 </div>
-<div class = "row">
-  <div class = "col-sm-8">
+<div class = "row ">
+  <div class = "col-sm-8 mt-3">
     <table class='table table-hover table-inverse'>
       <thead>
         <tr>
           <th>商品名</th>
-          <th>単価(税込み)</th>
+          <th>単価(税込)</th>
           <th>数量</th>
           <th>小計</th>
           <th>製作ステータス</th>
@@ -82,32 +82,32 @@
   </div>
   <div class = "col-1">
   </div>
-  <div class = "col-sm-3">
-    <div class = "h-50">
-    </div>
+  <div class = "col-sm-3 position-relative">
+    <div class ="col-12 position-absolute bottom-50 end-50" style = "bottom: 0;">
     <div class = "row">
-      <div class = "col-6">
+      <div class = "col-5 pr-0">
         <b>商品合計</b>
       </div>
-      <div class = "col-6 text-right">
+      <div class = "col-4 text-right pl-0">
         <%= @order.total_payment.to_s(:delimited) %>円
       </div>
     </div>
     <div class = "row">
-      <div class = "col-6">
+      <div class = "col-5 pr-0">
         <b>送料</b>
       </div>
-      <div class = "col-6 text-right">
+      <div class = "col-4 text-right pl-0">
         <%= @order.postage.to_s(:delimited) %>円
       </div>
     </div>
     <div class = "row">
-      <div class = "col-6">
+      <div class = "col-5 pr-0">
         <b>請求金額合計</b>
       </div>
-      <div class = "col-6 text-right">
-        <%= (@order.total_payment + @order.postage).to_s(:delimited) %>円
+      <div class = "col-4 text-right pl-0">
+        <b><%= (@order.total_payment + @order.postage).to_s(:delimited) %>円</b>
       </div>
+    </div>
     </div>
   </div>
 </div>
