@@ -1,5 +1,4 @@
-<div class = "container">
-  <div class = "row">
+<div class = "row">
     <div class = "col-sm-3">
     <table frame = "box">
       <thead>
@@ -17,13 +16,13 @@
     </table>
   </div>
     <div class = "col-sm-9">
-      <% if @cart_item.errors.any? %>
-        <% if customer_signed_in? %>
-          <p class="text-danger">カート一覧から修正してください</p>
-        <% else %>
-          <p class="text-danger">商品購入には会員登録またはログインが必要です</p>
-        <% end %>
-      <% end %>
+      <!--< % if @cart_item.errors.any? %>-->
+      <!--  < % if customer_signed_in? %>-->
+      <!--    <p class="text-danger">カート一覧から修正してください</p>-->
+      <!--  < % else %>-->
+      <!--    <p class="text-danger">商品購入には会員登録またはログインが必要です</p>-->
+      <!--  < % end %>-->
+      <!--< % end %>-->
       <div class = "row">
         <div class = "col-sm-4">
         <% if @item.item_image.attached? %>
@@ -37,30 +36,20 @@
           <h3><%= @item.name %></h3>
           <p><%= @item.body %></p>
           <h3>￥<%= with_tax_price(@item.non_tax_price) %><sapn class = "h6">(税込)</sapn></h3>
-          <% if @item.is_selling == true %>
+          <!--< % if @item.is_selling == true %>-->
             <b class = "text-success">販売中</b>
-            <!--< % if customer_signed_in? %>-->
               <%= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>
-              <% if customer_signed_in? %>
-                <%= f.hidden_field :customer_id, :value => current_customer.id %>
-              <% end %>
+              <!--< % if customer_signed_in? %>-->
+                <%= f.hidden_field :customer_id, :value => 2 %>
+              <!--< % end %>-->
                 <%= f.hidden_field :item_id, :value => @item.id %>
                 <%= f.select :quantity, *[1..10], include_blank: "個数選択"  %>
                 <%= f.submit "カートに入れる", class: "btn btn-success"%>
               <% end %>
-
-            <!--< % else %>-->
-            <!--  < %= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>-->
-            <!--    < %= f.select :quantity, *[1..10], include_blank: "個数選択"  %>-->
-            <!--    < %= link_to "カートに入れる", new_customer_session_path, class: "btn btn-success"%>-->
-            <!--  < % end %>-->
-            <!--< % end %>-->
-
-          <% else %>
+          <!--< % else %>-->
             <b class = "text-black-50">販売停止中</b>
-          <% end %>
+          <!--< % end %>-->
         </div>
       </div>
     </div>
   </div>
-</div>
