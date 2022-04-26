@@ -14,19 +14,18 @@
 <%= form_with model: @address, url: public_address_path, local:true do |f| %>
   <div class="row">
     <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-sm-3 mx-3 my-1" %>
-        <%= f.text_field :postal_code, class: "col-sm-2 mx-3 my-1 form-control" %>
-        <div class="col-sm-3"></div>
-
+    <%= f.text_field :postal_code, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <div class="col-sm-3"></div>
   </div>
   <div class="row">
-      <%= f.label :address, "住所", class: "col-sm-3 mx-3 my-1" %>
-        <%= f.text_field :address, class: "col-sm-6 mx-3 my-1 form-control" %>
-<div class="col-sm-3"></div>
+    <%= f.label :address, "住所", class: "col-sm-3 mx-3 my-1" %>
+    <%= f.text_field :address, class: "col-sm-6 mx-3 my-1 form-control" %>
+    <div class="col-sm-3"></div>
   </div>
   <div class="row">
-      <%= f.label :name, "宛名", class: "col-sm-3 mx-3 my-1" %>
-        <%= f.text_field :name, class: "col-sm-2 mx-3 my-1 form-control" %>
-        <div class="col-sm-4"></div>
+    <%= f.label :name, "宛名", class: "col-sm-3 mx-3 my-1" %>
+    <%= f.text_field :name, class: "col-sm-2 mx-3 my-1 form-control" %>
+    <div class="col-sm-4"></div>
     <%= f.submit "変更内容を保存", class: "btn btn-success" %>
   </div>
 <% end %>
