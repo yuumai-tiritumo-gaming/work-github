@@ -23,8 +23,7 @@ class Public::AddressesController < ApplicationController
     @address = Address.find(params[:id])
     if @address.customer != current_customer
       redirect_to public_mypage_path
-    elsif
-      @address.update(address_params)
+    elsif @address.update(address_params)
       redirect_to public_addresses_path, notice: "会員情報を更新しました"
     else
       render "edit"
