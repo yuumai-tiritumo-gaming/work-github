@@ -6,7 +6,6 @@ class Public::CartItemsController < ApplicationController
     if @cart_item.save
       redirect_to action: "index"
     else
-      binding.pry
       @genres = Genre.all
       @item = Item.find(@cart_item.item_id)
       if customer_signed_in?
