@@ -1,8 +1,5 @@
-<div class="container">
-<h2>ショッピングカート</h2>
-  <%= link_to "カートを空にする", public_cart_items_clear_path, controller: "cart_items", action: "clear", class: "btn btn-danger", method: :delete, remote: true %>
-  <%= render "public/cart_items/all_cart_items", cart_items: @cart_items %>
-  <div class="d-flex align-items-center justify-content-center">
-  <%= link_to "情報入力に進む", new_public_order_path, class: "btn btn-success" %>
-  </div>
+<div class="row justify-content-between m-3">
+ <h4 class="col-sm-3 m-0 d-flex align-items-center justify-content-center" style="background-color: #d3d3d3;">ショッピングカート</h4>
+  <%= link_to "カートを空にする", public_cart_items_clear_path, controller: "cart_items", action: "clear", class: "btn btn-danger col-sm-2 d-flex align-items-center justify-content-center", method: :delete, remote: true %>
 </div>
+  <%= render "public/cart_items/all_cart_items", cart_items: @cart_items %>
