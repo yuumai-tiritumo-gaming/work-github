@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-  
+
   def create
     @cart_item = CartItem.new(cart_item_params)
     if @cart_item.save
@@ -10,12 +10,12 @@ class Public::CartItemsController < ApplicationController
       render "public/items/show"
     end
   end
-  
+
   def index
     @cart_items =  current_customer.cart_items
   end
 
-  
+
 
   def clear
     current_customer.cart_items.destroy_all
@@ -50,5 +50,4 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:customer_id, :item_id, :quantity)
   end
-
 end

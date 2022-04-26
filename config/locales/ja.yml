@@ -8,6 +8,13 @@ ja:
         password: パスワード
 ja:
   activerecord:
+    models:
+      genre: ジャンル
+    attributes:
+      genre:
+        name: ジャンル名
+ja:
+  activerecord:
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
