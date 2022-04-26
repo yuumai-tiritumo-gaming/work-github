@@ -20,7 +20,7 @@ namespace :public, path: '/' do
     resources "addresses",                    only: [:index,:edit,:create,:destroy,:update]
     get       "/orders/conform"               => "orders#conform"
     resources "orders",                       only: [:index,:show,:new,:create]
-    post       "/orders/check"                => "orders#check"
+    post      "/orders/check"                 => "orders#check"
     delete    "/cart_items/clear"             => "cart_items#clear"
     resources "cart_items",                   only: [:index,:create,:destroy,:update]
   end
