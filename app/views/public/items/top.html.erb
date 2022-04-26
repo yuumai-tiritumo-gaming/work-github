@@ -1,21 +1,21 @@
 <div class = "row">
-  <div class = "col-2">
+  <div class = "col-sm-3">
     <table frame = "box">
       <thead>
         <tr>
-          <th style="border: 1px solid black;">ジャンル一覧</th>
+          <th class = "col-sm-1 text-center" style="border: 1px solid black;">ジャンル検索</th>
         </tr>
       </thead>
       <tbody>
       <% @genres.each do |genres| %>
         <tr>
-          <td><%= genres.name %></td>
+          <td class = "col-sm-1"><%= genres.name %></td>
         </tr>
       <% end %>
       </tbody>
     </table>
   </div>
-  <div class = "col-sm-10 col-xl-8">
+  <div class = "col-sm-9 col-xl-8">
     <div class = "row">
       <div class = "col-8 card border-0">
         <%= image_tag "top_image3.jpg", class: "card-img" %>
@@ -36,22 +36,28 @@
       </div>
     </div>
     <div class = "row">
+      <div class = "col-sm-3 mt-2">
+        <h2><b>新着商品</b></h2>
+      </div>
+
+    </div>
+    <div class = "row">
       <% @items.each do |item| %>
       <div class = "col-xl-3">
         <%= link_to public_item_path(item.id) do %>
           <% if item.item_image.attached? %>
-            <%= image_tag item.item_image, size: "200x200" %>
+            <%= image_tag item.item_image, size: "180x135" %>
           <% else %>
-            <%= image_tag 'no_image', size: "200x200" %>
+            <%= image_tag 'no_image', size: "180x135" %>
           <% end %>
         <% end %>
         <p><%= link_to item.name, public_item_path(item.id) %></p>
         <p>￥<%= with_tax_price(item.non_tax_price) %></p>
           </%>
         <% if item.is_selling == true %>
-          <p class = "text-success">販売中</p>
+          <b class = "text-success">販売中</b>
         <% else %>
-          <p class = "text-black-50">販売停止中</p>
+          <b class = "text-black-50">販売停止中</b>
         <% end %>
       </div>
       <% end %>

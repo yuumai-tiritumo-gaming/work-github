@@ -4,13 +4,13 @@
     <table frame = "box">
       <thead>
         <tr>
-          <th style="border: 1px solid black;">ジャンル一覧</th>
+          <th class = "col-sm-1 text-center" style="border: 1px solid black;">ジャンル一覧</th>
         </tr>
       </thead>
       <tbody>
       <% @genres.each do |genres| %>
         <tr>
-          <td><%= genres.name %></td>
+          <td class = "col-sm-1"><%= genres.name %></td>
         </tr>
       <% end %>
       </tbody>
@@ -36,9 +36,9 @@
         <div class = "col-sm-5">
           <h3><%= @item.name %></h3>
           <p><%= @item.body %></p>
-          <h3>￥<%= with_tax_price(@item.non_tax_price) %><sapn class = "h5 small">(税込)</sapn></h3>
+          <h3>￥<%= with_tax_price(@item.non_tax_price) %><sapn class = "h6">(税込)</sapn></h3>
           <% if @item.is_selling == true %>
-            <p class = "text-success">販売中</p>
+            <b class = "text-success">販売中</b>
             <!--< % if customer_signed_in? %>-->
               <%= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>
               <% if customer_signed_in? %>
@@ -57,7 +57,7 @@
             <!--< % end %>-->
 
           <% else %>
-            <p class = "text-black-50">販売停止中</p>
+            <b class = "text-black-50">販売停止中</b>
           <% end %>
         </div>
       </div>

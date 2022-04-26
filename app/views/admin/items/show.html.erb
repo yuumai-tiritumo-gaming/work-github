@@ -1,49 +1,65 @@
-<div class = "container">
-  <div class = "row">
-    <div class = "col">
-      <h3>商品詳細</h3>
-    </div>
+<div class = "row mb-5">
+  <div class = "col-sm-3">
+    <h3 class ="text-center mx-1" style="background-color: #d3d3d3;"><b>商品詳細</b></h3>
   </div>
-  <div class = "row">
-    <div class = "col">
-      <% if @item.item_image.attached? %>
-        <%= image_tag @item.item_image, size: "200x200" %>
-       <% else %>
-        <%= image_tag 'no_image', size: "200x200" %>
-       <% end %>
-    </div>
-    <div class = "col">
-      <table class='table table-hover table-inverse'>
-        <thead>
-          <tr>
-            <th>商品名</th>
-            <th>商品説明</th>
-            <th>ジャンル</th>
-            <th>税込価格(税抜価格)</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-            <td><%= @item.name %></td>
-            <td><%= @item.body %></td>
-            <td><%= @item.genre.name %></td>
-            <td><%= with_tax_price(@item.non_tax_price) %>(<%= @item.non_tax_price.to_s(:delimited) %>)</td>
-            <td>
-              <% if @item.is_selling == true %>
-                <p class = "text-success">販売中</p>
-              <% else %>
-                <p class = "text-black-50">販売停止中</p>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+</div>
+<div class = "row justify-content-center">
+  <div class = "col-sm-5">
+    <% if @item.item_image.attached? %>
+      <%= image_tag @item.item_image, size: "200x200" %>
+    <% else %>
+      <%= image_tag 'no_image', size: "200x200" %>
+    <% end %>
   </div>
-  <div class = "row">
-    <div class = "col">
-      <%= link_to "編集", edit_admin_item_path(@item.id) %>
+  <div class = "col-sm-7">
+    <div class ="row">
+      <div class = "col-3">
+        <p>商品名</p>
+      </div>
+      <div class = "col-7">
+        <%= @item.name %>
+      </div>
+    </div>
+    <div class ="row">
+      <div class = "col-3">
+        <p>商品説明</p>
+      </div>
+      <div class = "col-7">
+        <%= @item.body %>
+      </div>
+    </div>
+    <div class ="row">
+      <div class = "col-3">
+        <p>ジャンル</p>
+      </div>
+      <div class = "col-7">
+        <%= @item.genre.name %>
+      </div>
+    </div>
+    <div class ="row">
+      <div class = "col-3">
+        <p>税込価格<br>(税抜価格)</p>
+      </div>
+      <div class = "col-7">
+        <%= with_tax_price(@item.non_tax_price) %>(<%= @item.non_tax_price.to_s(:delimited) %>)円
+      </div>
+    </div>
+    <div class ="row">
+      <div class = "col-3">
+        <p>販売ステータス</p>
+      </div>
+      <div class = "col-7">
+        <% if @item.is_selling == true %>
+          <b class = "text-success">販売中</b>
+        <% else %>
+          <b class = "text-black-50">販売停止中</b>
+        <% end %>
+      </div>
+    </div>
+    <div class ="row">
+      <div class = "col-6">
+        <%= link_to "編集する", edit_admin_item_path(@item.id),class: 'btn btn-success px-4 py-2 col-6' %>
+      </div>
     </div>
   </div>
 </div>
