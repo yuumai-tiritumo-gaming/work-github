@@ -4,7 +4,6 @@
   </div>
 </div>
 
-<% if @customer.errors.any? %>
   <div class='row'>
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
@@ -12,7 +11,6 @@
     </div>
     <div class="col-sm-4"></div>
   </div>
-<% end %>
 
 <%= form_with model: @customer, url: public_customers_path, local:true do |f| %>
   <div class="row">

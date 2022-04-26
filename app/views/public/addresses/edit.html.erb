@@ -4,14 +4,12 @@
   </div>
 </div>
 
-<% if @address.errors.any? %>
   <div class='row'>
     <div class="col-sm-6">
     <div class="col-sm-6">
       <%= render "public/shared/error_messages", resource: @address %>
     </div>
   </div>
-<% end %>
 
 <%= form_with model: @address, url: public_address_path, local:true do |f| %>
   <div class="row">
