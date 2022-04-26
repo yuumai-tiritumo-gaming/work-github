@@ -6,13 +6,21 @@ class Admin::GenresController < ApplicationController
   end
 
   def create
-    genre = Genre.new(genre_params)
-    genre.save
-    @genre = Genre.new
-    @genres = Genre.all
-    respond_to do |format|
-     format.html { redirect_to request.referer }
-     format.js
+    @genre = Genre.new(genre_params)
+    if @genre.save
+      @genre     = Genre.new
+      @genres    = Genre.all
+      respond_to do |format|
+       format.html { redirect_to request.referer }
+       format.js
+      end
+    else
+      @genres = Genre.all
+      flash.now[:alert] = "ジャンル名を入力してください"
+      respond_to do |format|
+       format.html { render "index" }
+       format.js
+      end
     end
   end
 
