@@ -21,20 +21,20 @@
       <%= f.submit "新規登録", class: "btn btn-success" %>
   <% end %>
 <br>
-<table class="table table-bordered mt-5">
+<table class="table border border-dark mt-5">
   <tbody>
     <tr style="background-color: #d3d3d3;">
-      <td class="col-sm-1">郵便番号</td>
-      <td class="col-sm-6">住所</td>
-      <td class="col-sm-2">宛名</td>
-      <td class="col-sm-3"></td>
+      <td class="col-sm-1 border border-dark">郵便番号</td>
+      <td class="col-sm-6 border border-dark">住所</td>
+      <td class="col-sm-2 border border-dark">宛名</td>
+      <td class="col-sm-3 border border-dark"></td>
     </tr>
     <% @addresses.each do |address| %>
     <tr>
-      <td><%= address.postal_code %></td>
-      <td><%= address.address %></td>
-      <td><%= address.name %></td>
-      <td class="text-center">
+      <td class="border border-dark"><%= address.postal_code %></td>
+      <td class="border border-dark"><%= address.address %></td>
+      <td class="border border-dark"><%= address.name %></td>
+      <td class="text-center border border-dark">
         <%= link_to edit_public_address_path(address), class: "btn btn-success" do %>
           編集する
         <% end %>

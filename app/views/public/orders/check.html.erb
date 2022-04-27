@@ -7,25 +7,26 @@
 </div>
 <div class="row mb-4 justify-content-between">
   <div class="col-sm-8">
-    <table class='table'>
+    <table class='table border border-dark'>
       <thead>
         <tr class="table-active">
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
+          <th class="border border-dark">商品名</th>
+          <th class="border border-dark">単価(税込)</th>
+          <th class="border border-dark">数量</th>
+          <th class="border border-dark">小計</th>
         </tr>
       </thead>
       <tbody>
         <% @cart_items.each do |cart_item| %>
         <% item = Item.find(cart_item.item_id) %>
         <tr>
-          <td><%= image_tag item.get_item_image(20,20) %>
+          <td class="border border-dark">
+              <%= image_tag item.get_item_image(20,20) %>
               <%= item.name %>
           </td>
-          <td><%= with_tax_price(item.non_tax_price) %></td>
-          <td><%= cart_item.quantity %></td>
-          <td><%= subtotal(cart_item.quantity) %></td>
+          <td class="border border-dark"><%= with_tax_price(item.non_tax_price) %></td>
+          <td class="border border-dark"><%= cart_item.quantity %></td>
+          <td class="border border-dark"><%= subtotal(cart_item.quantity) %></td>
         </tr>
         <% end %>
       </tbody>
@@ -34,16 +35,16 @@
   <div class="col-sm-3">
     <table class='table'>
       <tr>
-        <th class="table-active">送料</th>
-        <td><%= @order.postage %></td>
+        <th class="table-active border border-dark">送料</th>
+        <td class="border border-dark"><%= @order.postage %></td>
       </tr>
       <tr>
-        <th class="table-active">商品合計</th>
-        <td><%= total_price(@cart_items)%></td>
+        <th class="table-active border border-dark">商品合計</th>
+        <td class="border border-dark"><%= total_price(@cart_items)%></td>
       </tr>
       <tr>
-        <th class="table-active">請求金額</th>
-        <td><%= (total_price_undelimited(@cart_items) + @order.postage).to_s(:delimited) %></td>
+        <th class="table-active border border-dark">請求金額</th>
+        <td class="border border-dark"><%= (total_price_undelimited(@cart_items) + @order.postage).to_s(:delimited) %></td>
       </tr>
     </table>
   </div>
