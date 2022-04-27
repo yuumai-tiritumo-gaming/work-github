@@ -31,6 +31,7 @@ ja:
         first_name: "名"
         phone_number: "電話番号"
         address: "住所"
+        password_confirmation: "確認用パスワード"
       admin:
         email: "メールアドレス"
         password: "パスワード"

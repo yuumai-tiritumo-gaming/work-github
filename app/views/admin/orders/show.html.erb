@@ -1,6 +1,6 @@
 <div class = "row mb-3">
   <div class = "col-sm-3">
-    <h3 class ="text-center mx-1" style="background-color: #d3d3d3;"><b>注文履歴一覧</b></h3>
+    <h3 class ="text-center mx-1" style="background-color: #d3d3d3;"><b>注文履歴詳細</b></h3>
   </div>
 </div>
 <div class = "row mb-3">
@@ -53,17 +53,18 @@
 </div>
 <div class = "row ">
   <div class = "col-sm-8 mt-3">
-    <table class='table table-hover table-inverse'>
+    <table class='table table-hover table-inverse table-borderless'>
       <thead>
-        <tr>
+        <tr class="table-active">
           <th>商品名</th>
           <th>単価(税込)</th>
           <th>数量</th>
           <th>小計</th>
           <th>製作ステータス</th>
+          <th></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class='border-bottom'>
       <% @order.order_items.each do |order_item| %>
         <tr>
           <td><%= order_item.item.name %></td>
@@ -72,6 +73,8 @@
           <td><%= subtotal(order_item.quantity) %></td>
           <td><%= form_with url: admin_order_item_path(order_item.id), method: :patch , local:true do |f| %>
             <%= f.select :making_status, [['着手不可', 0], ['製作待ち', 1], ['製作中', 2], ['製作完了', 3]], {selected: "#{order_item.making_status_before_type_cast}"}, {class: "form_select select_box_status"} %>
+          </td>
+          <td>
             <%= f.submit "更新", class: 'btn btn-success font-weight-bold' %>
             <% end %>
           </td>

@@ -35,15 +35,15 @@ class Public::SessionsController < Devise::SessionsController
     if @customer
 
       if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
-        flash[:alert] = "退会済みです。"
+        flash[:alert] = "退会済みです"
         redirect_to new_customer_session_path
       elsif @customer.valid_password?(params[:customer][:password]) != true
-        flash[:alert] = "パスワードが正しくありません。"
+        flash[:alert] = "パスワードが正しくありません"
       end
 
 
     else
-      flash[:alert] = "有効なメールアドレスではありません。"
+      flash[:alert] = "有効なメールアドレスではありません"
     end
 
   end
