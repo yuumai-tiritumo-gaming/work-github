@@ -24,7 +24,7 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_active: false)
     sign_out
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to  new_customer_session_path
+    redirect_to public_root_path
   end
 
   private
