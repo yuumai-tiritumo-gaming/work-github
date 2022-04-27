@@ -28,7 +28,7 @@ class Public::OrdersController < ApplicationController
       @order.postal_code =    Address.find(params[:order][:address_id]).postal_code
       @order.address     =    Address.find(params[:order][:address_id]).address
       @order.name        =    Address.find(params[:order][:address_id]).name
-    else #params[:order][:address_info] == "2"]
+    else #params[:order][:address_info] == "2"
       @order = Order.new(order_params)
       if params[:order][:postal_code].empty? && params[:order][:address].empty? && params[:order][:name].empty?
         @addresses = current_customer.addresses
