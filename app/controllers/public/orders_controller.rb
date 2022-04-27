@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
   before_action :valid_cart?, only: [:new]
-  before_action :your_address?, only: [:show]
+  before_action :your_order?, only: [:show]
 
   def show
     @order       = Order.find(params[:id])
@@ -74,8 +74,8 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-  def your_address?
-    unless Address.find(params[:id]).customer == current_customer
+  def your_order?
+    unless Order.find(params[:id]).customer == current_customer
       redirect_to public_root_path
     end
   end

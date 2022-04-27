@@ -20,8 +20,6 @@ class Public::CartItemsController < ApplicationController
     @cart_items =  current_customer.cart_items
   end
 
-
-
   def clear
     current_customer.cart_items.destroy_all
     @cart_items =  current_customer.cart_items

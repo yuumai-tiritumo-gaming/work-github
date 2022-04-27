@@ -2,6 +2,15 @@
 .field_with_errors {
   display: contents;
 }
+
+.table th, .table td {
+  padding: 0.75rem;
+  border: 1px solid black;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid black;
+
 .form-control::placeholder{
   color: #cccccc;
 }
@@ -21,4 +30,5 @@
   width: 100px;
   border: 1px solid #ced4da;
   height: calc(1.5em + 0.75rem + 2px);
+
 }
