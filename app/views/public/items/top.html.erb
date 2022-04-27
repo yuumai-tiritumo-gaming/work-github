@@ -1,33 +1,22 @@
 <div class = "row">
   <div class = "col-sm-3">
-    <table frame = "box">
-      <thead>
-        <tr>
-          <th class = "col-sm-1 text-center" style="border: 1px solid black;">ジャンル検索</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @genres.each do |genres| %>
-        <tr>
-          <td class = "col-sm-1" style="word-break: break-all;"><%= genres.name %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+     <%= render "public/genres/genre_search", genres: @genres %>
   </div>
   <div class = "col-sm-9 col-xl-8">
     <div class = "row">
       <div class = "col-8 card border-0">
         <%= image_tag "top_image3.jpg", class: "card-img" %>
           <div class="card-img-overlay d-flex">
-            <p class="text-center align-self-center mx-auto">
-              <b>
-              ようこそ、ながのCAKEへ！<br>
-              このサイトは、ケーキ販売のECサイトになります。<br>
-              会員ない方も商品の閲覧はできますが、<br>
-              購入には会員登録が必要になります。<br>
-              </b>
-            </p>
+            <div class="d-flex align-items-center mx-auto px-2 my-5 image_hider_top">
+              <p class="text-center align-self-center mx-auto">
+                <b>
+                ようこそ、ながのCAKEへ！<br>
+                このサイトは、ケーキ販売のECサイトになります。<br>
+                会員ない方も商品の閲覧はできますが、<br>
+                購入には会員登録が必要になります。<br>
+                </b>
+              </p>
+            </div>
           </div>
       </div>
       <div class = "col-2">
