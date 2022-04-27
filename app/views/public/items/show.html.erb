@@ -1,17 +1,24 @@
-<div class = "container">
-  <div class = "row">
-    <div class = "col-3">
-      <p>ジャンル検索</p>
+<div class = "row">
+    <div class = "col-sm-3">
+    <table frame = "box">
+      <thead>
+        <tr>
+          <th class = "col-sm-1 text-center" style="border: 1px solid black;">ジャンル検索</th>
+        </tr>
+      </thead>
+      <tbody>
       <% @genres.each do |genres| %>
-      <p><%= genres.name %></p>
+        <tr>
+          <td class = "col-sm-1" style="word-break: break-all;"><%= genres.name %></td>
+        </tr>
       <% end %>
-    </div>
-    <div class = "col-9">
-      <% if @cart_item.errors.any? %>
-      <p class="text-danger">カート一覧から修正してください</p>
-      <% end %>
+      </tbody>
+    </table>
+  </div>
+    <div class = "col-sm-9">
+
       <div class = "row">
-        <div class = "col-4">
+        <div class = "col-sm-4">
         <% if @item.item_image.attached? %>
           <%= image_tag @item.item_image, size: "200x200" %>
         <% else %>
@@ -19,24 +26,24 @@
           </%>
         <% end %>
         </div>
-        <div class = "col-5">
+        <div class = "col-sm-5">
           <h3><%= @item.name %></h3>
           <p><%= @item.body %></p>
-          <h3>￥<%= with_tax_price(@item.non_tax_price) %><sapn class = "small">(税込み)</sapn></h3>
+          <h3>￥<%= with_tax_price(@item.non_tax_price) %><span class = "h6">(税込)</span></h3>
           <% if @item.is_selling == true %>
-            <p class = "text-success">販売中</p>
-            
-            <%= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>
-              <%= f.hidden_field :customer_id, :value => current_customer.id %>
-              <%= f.hidden_field :item_id, :value => @item.id %>
-              <%= f.select :quantity, *[1..10], include_blank: "個数選択"  %>
-              <%= f.submit "カートに入れる", class: "btn btn-success"%>
-            <% end %>
+            <b class = "text-success">販売中</b>
+              <%= form_with model: @cart_item, url: public_cart_items_path, local:true do |f| %>
+              <% if customer_signed_in? %>
+                <%= f.hidden_field :customer_id, :value => current_customer.id %>
+              <% end %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.select :quantity, *[1..10],{prompt: "個数選択"}, {class: "form_select select_box_items"}  %>
+                <%= f.submit "カートに入れる", class: "btn btn-success font-weight-bold"%>
+              <% end %>
           <% else %>
-            <p class = "text-black-50">販売停止中</p>
+            <b class = "text-black-50">販売停止中</b>
           <% end %>
         </div>
       </div>
     </div>
   </div>
-</div>

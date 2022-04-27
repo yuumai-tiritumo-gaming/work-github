@@ -1,5 +1,5 @@
 class Admin::GenresController < ApplicationController
-
+  before_action :valid_admin?
   def index
     @genre = Genre.new
     @genres = Genre.all

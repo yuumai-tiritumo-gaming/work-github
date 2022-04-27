@@ -1,21 +1,24 @@
 class Public::CartItemsController < ApplicationController
+  before_action :valid_customer?, only: [:create]
 
   def create
     @cart_item = CartItem.new(cart_item_params)
     if @cart_item.save
+      flash[:notice] = "カートに商品を追加しました"
       redirect_to action: "index"
     else
-      @genres = Genre.all
-      @item = Item.find(@cart_item.item_id)
-      render "public/items/show"
+      if customer_signed_in?
+        flash[:alert] = "カート一覧から修正してください"
+      else
+        flash[:alert] = "商品購入には会員登録またはログインが必要です"
+      end
+      redirect_to request.referer
     end
   end
 
   def index
     @cart_items =  current_customer.cart_items
   end
-
-
 
   def clear
     current_customer.cart_items.destroy_all
@@ -50,4 +53,11 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:customer_id, :item_id, :quantity)
   end
+
+  def valid_customer?
+    unless customer_signed_in?
+      redirect_to new_customer_session_path
+    end
+  end
+
 end

@@ -1,7 +1,15 @@
-<h1>ユーザー注文履歴一覧</h1>
+<div class="row mb-4">
+  <div class="col-sm-4">
+    <div class="row justify-content-center">
+      <h5 class="text-center col-sm-5" style="background-color: #d3d3d3;">注文履歴一覧</h5>
+    </div>
+  </div>
+</div>
+
+
 <table class='table'>
   <thead>
-    <tr>
+    <tr class="table-active">
      <th>注文日</th>
      <th>配送先</th>
      <th>注文商品</th>
@@ -13,20 +21,22 @@
   <tbody>
     <% @orders.each do |order| %>
     <tr>
-     <td><%= order.created_at %></td>
-     <td><%= order.postal_code %></br>
+     <td class="align-middle" style="width:140px"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+     <td class="align-middle p-1">
+         <%= "〒" + order.postal_code %></br>
          <%= order.address %></br>
          <%= order.name %>
      </td>
-     <td><% order_items = OrderItem.where(order_id: order.id) %>
+     <td class="align-middle" style="width:140px">
+         <% order_items = OrderItem.where(order_id: order.id) %>
          <% order_items.each do |order_item| %>
          <% item = Item.find(order_item.item_id)%>
          <%= item.name %></br>
          <% end %>
      </td>
-     <td><%= order.total_payment.to_s(:delimited) %></td>
-     <td><%= order.trade_status %></td>
-     <td><%= link_to "表示する",public_order_path(order) %></td>
+     <td class="align-middle p-1" style="width:100px"><%= order.total_payment.to_s(:delimited) + "円" %></td>
+     <td class="align-middle p-1" style="width:140px"><%= order.trade_status_i18n %></td>
+     <td class="text-center align-middle p-0" style="width:140px"><%= link_to "表示する",public_order_path(order), class: "btn btn-primary" %></td>
     </tr>
     <% end %>
   </tbody>

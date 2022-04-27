@@ -2,3 +2,33 @@
 .field_with_errors {
   display: contents;
 }
+
+.table th, .table td {
+  padding: 0.75rem;
+  border: 1px solid black;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid black;
+
+.form-control::placeholder{
+  color: #cccccc;
+}
+
+.form_select{
+  // border: 1px solid #ced4da
+  border-radius: 5px;
+}
+
+.select_box_genre{
+  width: 100%;
+  border: 1px solid #ced4da;
+  height: calc(1.5em + 0.75rem + 2px);
+}
+
+.select_box_status{
+  width: 100px;
+  border: 1px solid #ced4da;
+  height: calc(1.5em + 0.75rem + 2px);
+
+}
