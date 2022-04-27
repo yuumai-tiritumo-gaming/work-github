@@ -4,6 +4,7 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(cart_item_params)
     if @cart_item.save
+      flash[:notice] = "カートに商品を追加しました"
       redirect_to action: "index"
     else
       if customer_signed_in?
@@ -54,11 +55,11 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:customer_id, :item_id, :quantity)
   end
-  
+
   def valid_customer?
     unless customer_signed_in?
       redirect_to new_customer_session_path
     end
   end
-  
+
 end
