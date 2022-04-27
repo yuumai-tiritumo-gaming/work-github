@@ -45,17 +45,17 @@
   <div class="row mb-1">
       <div class="col-sm-1"></div>
       <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-sm-3 my-auto text-end" %>
-      <%= f.text_field :postal_code, class: "col-sm-2 m-0"%>
+      <%= f.text_field :postal_code, placeholder: "0000000", class: "col-sm-2 m-0 pl-0"%>
   </div>
   <div class="row mb-1">
       <div class="col-sm-1"></div>
       <%= f.label :address, "住所", class: "col-sm-3 my-auto text-end" %>
-      <%= f.text_field :address, class: "col-sm-5 m-0"%>
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "col-sm-5 m-0 pl-0"%>
   </div>
   <div class="row mb-1">
       <div class="col-sm-1"></div>
       <%= f.label :name, "宛名", class: "col-sm-3 my-auto text-end" %>
-      <%= f.text_field :name, class: "col-sm-2 m-0"%>
+      <%= f.text_field :name, placeholder: "令和道子", class: "col-sm-2 m-0 pl-0"%>
   </div>
   <div class="row mb-1 justify-content-center">
       <%= f.submit "確定画面へ進む", class: "btn btn-primary col-sm-2"  %>
