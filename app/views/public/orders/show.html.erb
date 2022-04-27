@@ -1,61 +1,77 @@
-<h1>注文履歴詳細</h1>
-<h2>注文情報</h2>
-<table class='table'>
-  <tr>
-    <th>注文日</th>
-    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-  </tr>
-  <tr>
-    <th>配送先</th>
-    <td>
-      <%= "〒"+ @order.postal_code %></br>
-      <%= @order.address %></br>
-      <%= @order.name %>
-    </td>
-  </tr>
-  <tr>
-    <th>支払方法</th>
-    <td><%= @order.payment_method_i18n %></td>
-  </tr>
-  <tr>
-    <th>ステータス</th>
-    <td><%= @order.trade_status_i18n %></td>
-  </tr>
-</table>
-<h2>請求情報</h2>
-<table class='table'>
-  <tr>
-    <th>商品合計</th>
-    <td><%= total_price(@order_items) %></td>
-  </tr>
-  <tr>
-    <th>配送料</th>
-    <td><%= @order.postage %></td>
-  </tr>
-  <tr>
-    <th>ご請求額</th>
-    <td><%= @order.total_payment.to_s(:delimited) %></td>
-  </tr>
-</table>
-<h2>注文内容</h2>
-<table class='table'>
-  <thead>
-    <tr>
-      <th>商品</th>
-      <th>単価(税込)</th>
-      <th>個数</th>
-      <th>小計</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order_items.each do |order_item| %>
-    <% item = Item.find(order_item.item_id) %>
-    <tr>
-      <td><%= item.name %></td>
-      <td><%= with_tax_price(order_item.price) %></td>
-      <td><%= order_item.quantity %></td>
-      <td><%= subtotal(order_item.quantity) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row mb-5">
+  <div class="col-sm-5">
+    <div class="row justify-content-center">
+      <h4 class="text-center col-sm-7" style="background-color: #d3d3d3;">注文履歴詳細</h4>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <h5 class="font-weight-bold">注文情報</h5>
+    <table class='table'>
+        <tr>
+          <th class="table-active" style="width:150px">注文日</th>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th class="table-active align-middle">配送先</th>
+          <td>
+            <%= "〒"+ @order.postal_code %></br>
+            <%= @order.address %></br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="table-active">支払方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th class="table-active">ステータス</th>
+          <td><%= @order.trade_status_i18n %></td>
+        </tr>
+      </table>
+  </div>
+  <div class="col-sm-4">
+    <h5 class="font-weight-bold">請求情報</h5>
+    <table class='table'>
+        <tr>
+          <th class="table-active">商品合計</th>
+          <td><%= total_price(@order_items) %></td>
+        </tr>
+        <tr>
+          <th class="table-active">配送料</th>
+          <td><%= @order.postage %></td>
+        </tr>
+        <tr>
+          <th class="table-active">ご請求額</th>
+          <td><%= @order.total_payment.to_s(:delimited) %></td>
+        </tr>
+      </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10">
+    <h5 class="font-weight-bold">注文内容</h5>
+    <table class='table'>
+    <thead>
+      <tr class="table-active">
+        <th>商品</th>
+        <th style="width:150px">単価(税込)</th>
+        <th style="width:90px">個数</th>
+        <th style="width:90px">小計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_items.each do |order_item| %>
+      <% item = Item.find(order_item.item_id) %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= with_tax_price(order_item.price) %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= subtotal(order_item.quantity) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>

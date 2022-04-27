@@ -2,7 +2,8 @@ module Public::CartItemsHelper
 
   #税込表示
   def with_tax_price(price)
-    @tax_in = (price*1.1).floor.to_s(:delimited)
+    @tax_in = (price*1.1).floor
+    @tax_in.to_s(:delimited)
   end
 
   #小計表示
@@ -32,5 +33,20 @@ module Public::CartItemsHelper
     end
     @price
    end
+
+  def quantity_hash(cart_item)
+    num = cart_item.quantity
+    @quantity_hash = { :"1" => 1 , :"#{num}" => num}
+    while num >= 2
+      num -= 1
+      @quantity_hash[:"#{num}"] = num
+    end
+    num = cart_item.quantity
+    while num <= (num + 20)
+      num += 1
+      @quantity_hash[:"#{num}"] = num
+    end
+    @quantity_hash
+  end
 
 end

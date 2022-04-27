@@ -19,8 +19,6 @@ class Public::CartItemsController < ApplicationController
     @cart_items =  current_customer.cart_items
   end
 
-
-
   def clear
     current_customer.cart_items.destroy_all
     @cart_items =  current_customer.cart_items
@@ -54,11 +52,11 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:customer_id, :item_id, :quantity)
   end
-  
+
   def valid_customer?
     unless customer_signed_in?
       redirect_to new_customer_session_path
     end
   end
-  
+
 end
