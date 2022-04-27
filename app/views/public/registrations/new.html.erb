@@ -1,4 +1,4 @@
-<%= render "public/shared/error_messages", resource: resource %>
+<%= render "devise/shared/error_messages", resource: resource %>
   <div class = "col-sm-4 px-5 pb-5 ">
     <h3 class ="text-center mx-1" style="background-color: #d3d3d3;"><b>新規会員登録</b></h3>
   </div>
@@ -44,7 +44,7 @@
       <%= f.label :email, "メールアドレス" %>
     </div>
     <div class="col-1">
-      
+
     </div>
     <div class="col-sm-3 col-7">
     <%= f.email_field :email, autocomplete: "off", placeholder: "sample@example.com", class: "email form-control" %>

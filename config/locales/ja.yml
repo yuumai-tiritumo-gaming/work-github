@@ -1,27 +1,4 @@
 ja:
-  activerecord:
-    models:
-      admin:
-    attributes:
-      admin:
-        email: メールアドレス
-        password: パスワード
-ja:
-  activerecord:
-    models:
-      genre: ジャンル
-    attributes:
-      genre:
-        name: ジャンル名
-ja:
-  activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
-ja:
   enums:
     order:
       payment_method:
@@ -39,6 +16,30 @@ ja:
         waiting: "製作待ち"
         making: "製作中"
         finished: "製作完了"
+  activerecord:
+    models:
+      customer: "会員情報"
+      admin: "管理者"
+    attributes:
+      customer:
+        email: "メールアドレス"
+        password: "パスワード"
+        family_kana: "フリガナ(セイ)"
+        first_kana: "フリガナ(メイ)"
+        postal_code: "郵便番号"
+        family_name: "姓"
+        first_name: "名"
+        phone_number: "電話番号"
+        address: "住所"
+      admin:
+        email: "メールアドレス"
+        password: "パスワード"
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
   date:
     abbr_day_names:
     - 日
