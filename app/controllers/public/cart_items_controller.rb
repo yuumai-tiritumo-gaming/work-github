@@ -4,6 +4,7 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(cart_item_params)
     if @cart_item.save
+      flash[:notice] = "カートに商品を追加しました"
       redirect_to action: "index"
     else
       if customer_signed_in?
