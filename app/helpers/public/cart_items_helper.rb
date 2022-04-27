@@ -42,7 +42,7 @@ module Public::CartItemsHelper
       num += 1
       @quantity_hash[:"#{num}"] = num
     end
-   @quantity_hash
+   @quantity_hash.to_a
   end
 
 end
