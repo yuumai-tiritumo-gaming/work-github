@@ -21,10 +21,7 @@
           <td class="align-middle"><%= with_tax_price(item.non_tax_price)%></td>
           <td class="align-middle" style="width:150px">
             <%= form_with url: public_cart_item_path(cart_item), method: :patch, local: false do |f| %>
-            <!--(1..20).to_aをハッシュにする？-->
-            <% @hash = quantity_hash(cart_item) %>
-            <%= f.select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10],[11,11],[12,12],[13,13],[14,14],[15,15],[16,16],[17,17],[18,18],[19,19],[20,20]], selected: "#{cart_item.quantity}" %>
-            <%= f.select :quantity, [@hash], selected: "#{cart_item.quantity}" %>
+            <%= f.select :quantity, [quantity_hash(cart_item)], selected: "#{cart_item.quantity}" %>
             <%= f.submit "変更", class: "btn btn-success"%>
             <% end %>
           </td>

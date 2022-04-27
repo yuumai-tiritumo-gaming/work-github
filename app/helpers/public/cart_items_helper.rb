@@ -35,18 +35,14 @@ module Public::CartItemsHelper
    end
 
   def quantity_hash(cart_item)
-    num = cart_item.quantity
-    @quantity_hash = { :"1" => 1 , :"#{num}" => num}
-    while num >= 2
-      num -= 1
-      @quantity_hash[:"#{num}"] = num
-    end
-    num = cart_item.quantity
-    while num <= (num + 20)
+    num = 1
+    max = (cart_item.quantity.to_i + 21)
+    @quantity_hash = { :"#{num}" => num }
+    while num < max
       num += 1
       @quantity_hash[:"#{num}"] = num
     end
-    @quantity_hash
+   @quantity_hash
   end
 
 end
