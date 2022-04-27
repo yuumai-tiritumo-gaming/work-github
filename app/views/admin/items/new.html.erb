@@ -35,7 +35,7 @@
         <%= f.label :genre_id, "ジャンル" %>
       </div>
       <div class = "col-6 pr-0">
-        <%= f.collection_select :genre_id, @genre, :id, :name, include_blank: "--選択して下さい--", class: 'form-control' %>
+        <%= f.collection_select :genre_id, @genre, :id, :name,{prompt: "--選択してください--"}, {class: "form_select select_box_genre"} %>
       </div>
     </div>
     <div class = "row py-1">
@@ -64,7 +64,7 @@
       <div class = "col-3">
       </div>
       <div class = "col-6">
-        <%= f.submit "新規登録", class: 'btn btn-success' %>
+        <%= f.submit "新規登録", class: 'btn btn-success font-weight-bold' %>
       </div>
     </div>
 <% end %>
