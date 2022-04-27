@@ -1,20 +1,6 @@
-<div class = "container">
-  <div class = "row">
-    <div class = "col-sm-3">
-    <table frame = "box">
-      <thead>
-        <tr>
-          <th class = "col-sm-1 text-center" style="border: 1px solid black;">ジャンル検索</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @genres.each do |genres| %>
-        <tr>
-          <td class = "col-sm-1"  style="word-break: break-all;"><%= genres.name %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+<div class = "row">
+  <div class = "col-sm-3">
+     <%= render "genres/genre_search", genres: @genres %>
   </div>
     <div class = "col-sm-9">
       <h2><b>商品一覧</b><span class = "h4">(全<%= Item.all.count %>件)</span></h2>
@@ -45,4 +31,3 @@
       </div>
     </div>
   </div>
-</div>
