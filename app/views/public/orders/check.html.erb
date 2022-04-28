@@ -20,7 +20,7 @@
         <% @cart_items.each do |cart_item| %>
         <% item = Item.find(cart_item.item_id) %>
         <tr>
-          <td class="col border border-dark">
+          <td class="border border-dark">
               <%= image_tag item.get_item_image(50,50) %>
               <span style="font-weight:bold;"><%= item.name %></span>
           </td>
