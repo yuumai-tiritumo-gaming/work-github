@@ -1,0 +1,32 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.field_with_errors {
+  display: contents;
+}
+
+.form-control::placeholder{
+  color: #cccccc;
+}
+
+.form_select{
+  border-radius: 5px;
+}
+
+.select_box_genre{
+  width: 100%;
+  border: 1px solid #ced4da;
+  height: calc(1.5em + 0.75rem + 2px);
+}
+
+.select_box_status{
+  width: 100px;
+  border: 1px solid #ced4da;
+  height: calc(1.5em + 0.75rem + 2px);
+
+}
+
+.image_hider_top{
+   background-color: rgba( 255, 255, 255, 0.3);
+   border-radius: 20px;
+}

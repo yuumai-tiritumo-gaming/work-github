@@ -1,2 +1,72 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="row">
+  <div class="col-sm-3 d-flex justify-content-center">
+    <h3 style="background-color: #d3d3d3;"><b>マイページ</b></h3>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-1 mb-0 mr-5 pt-2 pr-0">
+    <h5 class="mb-0"><b>登録情報</b></h5>
+  </div>
+  <div class="col-sm-2 pl-0">
+    <%= link_to edit_public_customers_path, class: "btn btn-success" do %>
+      編集する
+    <% end %>
+  </div>
+  <div class="col-sm-8"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-8">
+    <table class="table border border-dark">
+      <tbody>
+        <tr>
+          <th class="col-sm-2 border border-dark" style="background-color: #d3d3d3;">氏名</th></div>
+          <td class="col-sm-6 border border-dark"><%= @customer.family_name %>　<%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2 border border-dark" style="background-color: #d3d3d3;">カナ</th>
+          <td class="col-sm-6 border border-dark"><%= @customer.family_kana %>　<%= @customer.first_kana %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2 border border-dark" style="background-color: #d3d3d3;">郵便番号</th>
+          <td class="col-sm-6 border border-dark"><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2 border border-dark" style="background-color: #d3d3d3;">住所</th>
+          <td class="col-sm-6 border border-dark"><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2 border border-dark" style="background-color: #d3d3d3;">電話番号</th>
+          <td class="col-sm-6 border border-dark"><%= @customer.phone_number %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2 border border-dark" style="background-color: #d3d3d3;">メールアドレス</th>
+          <td class="col-sm-6 border border-dark"><%= @customer.email %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-1 mb-0 mr-5 pt-2 pr-0">
+    <h5 class="mb-0"><b>配送先</b></h5>
+  </div>
+  <div class="col-sm-2 mb-0 pr-0">
+    <%= link_to public_addresses_path, class: "btn btn-primary" do %>
+      一覧を見る
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-1 mb-0 mt-3 mr-5 pt-2 pr-0">
+    <h5 class="mb-0"><b>注文履歴</b></h5>
+  </div>
+  <div class="col-sm-2 mb-0 mt-3 pr-0">
+    <%= link_to public_orders_path, class: "btn btn-primary" do %>
+      一覧を見る
+    <% end %>
+  </div>
+</div>

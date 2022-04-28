@@ -1,2 +1,48 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="row">
+  <div class="col-sm-3 d-flex justify-content-center mb-3">
+    <h3 style="background-color: #d3d3d3;"><b>配送先登録/一覧</b></h3>
+  </div>
+</div>
+
+  <%= form_with model: @address, url: public_addresses_path, method: :post, local:true do |f| %>
+    <div class="row">
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "col-sm-3" %>
+      <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control col-sm-3" %>
+    </div>
+    <div class="row">
+      <%= f.label :address, "住所", class: "col-sm-3 my-2" %>
+      <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町", class: "form-control col-sm-6 my-2" %>
+    </div>
+    <div class="row">
+      <%= f.label :name, "宛名", class: "col-sm-3" %>
+      <%= f.text_field :name, placeholder: "令和道子", class: "form-control col-sm-3" %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+    <div class="col-sm-3"></div>
+      <%= f.submit "新規登録", class: "btn btn-success" %>
+  <% end %>
+<br>
+<table class="table border border-dark mt-5">
+  <tbody>
+    <tr style="background-color: #d3d3d3;">
+      <td class="col-sm-1 border border-dark">郵便番号</td>
+      <td class="col-sm-6 border border-dark">住所</td>
+      <td class="col-sm-2 border border-dark">宛名</td>
+      <td class="col-sm-3 border border-dark"></td>
+    </tr>
+    <% @addresses.each do |address| %>
+    <tr>
+      <td class="border border-dark"><%= address.postal_code %></td>
+      <td class="border border-dark"><%= address.address %></td>
+      <td class="border border-dark"><%= address.name %></td>
+      <td class="text-center border border-dark">
+        <%= link_to edit_public_address_path(address), class: "btn btn-success" do %>
+          編集する
+        <% end %>
+        <%= link_to public_address_path(address), class: "btn btn-danger", method: :delete do %>
+          削除する
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

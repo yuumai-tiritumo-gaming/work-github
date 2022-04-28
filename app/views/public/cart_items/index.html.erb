@@ -1,2 +1,5 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="row justify-content-between m-3">
+ <h4 class="col-sm-3 m-0 d-flex align-items-center justify-content-center" style="background-color: #d3d3d3;">ショッピングカート</h4>
+  <%= link_to "カートを空にする", public_cart_items_clear_path, controller: "cart_items", action: "clear", class: "btn btn-danger col-sm-2 d-flex align-items-center justify-content-center", method: :delete, remote: true %>
+</div>
+  <%= render "public/cart_items/all_cart_items", cart_items: @cart_items %>

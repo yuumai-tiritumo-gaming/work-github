@@ -1,0 +1,59 @@
+<div class = "row">
+  <div class = "col-sm-3">
+     <%= render "public/genres/genre_search", genres: @genres %>
+  </div>
+  <div class = "col-sm-9 col-xl-8">
+    <div class = "row">
+      <div class = "col-8 card border-0">
+        <%= image_tag "top_image3.jpg", class: "card-img" %>
+          <div class="card-img-overlay d-flex">
+            <div class="d-flex align-items-center mx-auto px-2 my-5 image_hider_top">
+              <p class="text-center align-self-center mx-auto">
+                <b>
+                ようこそ、ながのCAKEへ！<br>
+                このサイトは、ケーキ販売のECサイトになります。<br>
+                会員ない方も商品の閲覧はできますが、<br>
+                購入には会員登録が必要になります。<br>
+                </b>
+              </p>
+            </div>
+          </div>
+      </div>
+      <div class = "col-2">
+      </div>
+      <div class = "col-2">
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-sm-3 mt-2">
+        <h2><b>新着商品</b></h2>
+      </div>
+
+    </div>
+    <div class = "row">
+      <% @items.each do |item| %>
+      <div class = "col-xl-3">
+        <%= link_to public_item_path(item.id) do %>
+          <% if item.item_image.attached? %>
+            <%= image_tag item.item_image, size: "180x135" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "180x135" %>
+          <% end %>
+        <% end %>
+        <p class = "mb-1"><%= link_to item.name, public_item_path(item.id) %></p>
+        <p class = "mb-1">￥<%= with_tax_price(item.non_tax_price) %></p>
+        <% if item.is_selling == true %>
+          <p class = "mb-3"><b class = "text-success">販売中</b></p>
+        <% else %>
+          <p class = "mb-3"><b class = "text-black-50">販売停止中</b></p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+    <div class = "row align-items-right">
+      <div class = "col">
+        <p class = "text-right"><%= link_to "全ての商品を見る>", public_items_path %></p>
+      </div>
+    </div>
+  </div>
+</div>

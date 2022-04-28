@@ -1,0 +1,48 @@
+<div id="all_cart_items">
+  <table class="table border border-dark" >
+    <thead>
+      <tr class="table-active">
+        <th class="border border-dark">商品名</th>
+        <th class="border border-dark">単価(税込)</th>
+        <th class="border border-dark">数量</th>
+        <th class="border border-dark">小計</th>
+        <th class="border border-dark"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% cart_items.each do |cart_item| %>
+      <% item = Item.find(cart_item.item_id) %>
+        <tr>
+          <td class="border border-dark">
+            <%= image_tag item.get_item_image(50,50), class: "mr-3" %>
+            <%= item.name %>
+          </td>
+          <td class="align-middle border border-dark"><%= with_tax_price(item.non_tax_price)%></td>
+          <td class="align-middle border border-dark" style="width:150px">
+            <%= form_with url: public_cart_item_path(cart_item), method: :patch, local: false do |f| %>
+            <%= f.select :quantity, quantity_hash(cart_item), selected: "#{cart_item.quantity}" %>
+            <%= f.submit "変更", class: "btn btn-success"%>
+            <% end %>
+          </td>
+          <td class="align-middle border border-dark"><%= subtotal(cart_item.quantity) %></td>
+          <td class="align-middle text-center border border-dark" style="width:150px"><%= link_to "削除する", public_cart_item_path(cart_item), method: :delete, class: "btn btn-danger", remote: true %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row justify-content-between mb-5">
+    <div class="col-sm-2 d-flex align-items-center justify-content-center">
+      <%= link_to "買い物を続ける", public_root_path, class: "btn btn-primary" %>
+    </div>
+    <div class="col-sm-3">
+      <table class="table table-bordered border-secondary my-auto">
+        <tr>
+          <th class="table-active col-sm-6">合計金額</th>
+          <td class="col-sm-6"><%= total_price(@cart_items) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row d-flex align-items-center justify-content-center">
+      <%= link_to "情報入力に進む", new_public_order_path, class: "btn btn-success col-sm-2" %>
+  </div>

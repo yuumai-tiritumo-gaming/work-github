@@ -11,8 +11,22 @@ class Customer < ApplicationRecord
 
   KATAKANA_REGEXP = /\A[\p{katakana}\u{30fc}]+\z/
   validates :family_kana, format: { with: KATAKANA_REGEXP }
-  validates :first_kana, format: { with: KATAKANA_REGEXP }
+  validates :first_kana,  format: { with: KATAKANA_REGEXP }
 
-  validates :password, length: { minimum: 6 }
+
   validates :postal_code, length: { is: 7 }
+
+  validates :family_name,  presence: true
+  validates :first_name,   presence: true
+  validates :family_kana,  presence: true
+  validates :first_kana,   presence: true
+  validates :email,        presence: true
+  validates :phone_number, presence: true
+  validates :postal_code,  presence: true
+  validates :address,      presence: true
+  validates :is_active, inclusion: {in: [true, false]}
+
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
 end
