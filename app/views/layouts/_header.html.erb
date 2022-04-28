@@ -95,11 +95,11 @@
               </ul>
               </div>
             <div class="ml-5">
-            <%= form_with class: "rootpageSearchForm" do |form| %>
+            <%= form_with class: "rootpageSearchForm", method: :get do |f| %>
               <div class="input-group ml-5 mb-3">
-                <%= form.text_field :keyword, placeholder: "Search", id: 'Search_Form', class: "border border-dark border-right-0" %>
+                <%= f.text_field :keyword, placeholder: "Search", id: 'Search_Form', class: "border border-dark border-right-0" %>
               <div class="input-group-append">
-                <%= form.button :type => "submit", style: 'border-style: none;', class: "bg-white border border-dark border-left-0" do %>
+                <%= f.button :type => "submit", style: 'border-style: none;', class: "bg-white border border-dark border-left-0" do %>
                   <i class='fas fa-search'></i>
                 <% end %>
               </div>
