@@ -8,7 +8,11 @@ class Public::CartItemsController < ApplicationController
       redirect_to action: "index"
     else
       if customer_signed_in?
-        flash[:alert] = "カート一覧から修正してください"
+        if @cart_item.quantity == nil
+          flash[:alert] = "個数を選択してください"
+        else
+          flash[:alert] = "カート一覧から修正してください"
+        end
       else
         flash[:alert] = "商品購入には会員登録またはログインが必要です"
       end

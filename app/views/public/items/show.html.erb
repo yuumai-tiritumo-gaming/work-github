@@ -23,7 +23,7 @@
                 <%= f.hidden_field :customer_id, :value => current_customer.id %>
               <% end %>
                 <%= f.hidden_field :item_id, :value => @item.id %>
-                <%= f.select :quantity, *[1..10],{prompt: "個数選択"}, {class: "form_select select_box_items"}  %>
+                <%= f.select :quantity, *[1..30],{prompt: "個数選択"}, {class: "form_select select_box_items"}  %>
                 <%= f.submit "カートに入れる", class: "btn btn-success font-weight-bold"%>
               <% end %>
           <% else %>
