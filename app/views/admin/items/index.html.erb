@@ -23,18 +23,18 @@
       </thead>
       <tbody>
         <% @items.each do |item| %>
-          <tr class = "b-0">
-            <td><%= item.id %></td>
-            <td><%= link_to item.name,admin_item_path(item.id) %></td>
-            <td><%= item.non_tax_price.to_s(:delimited) %></td>
-            <td><%= item.genre.name %></td>
-            <td>
-              <% if item.is_selling == true %>
-                <b class = "text-success">販売中</b>
-              <% else %>
-                <b class = "text-black-50">販売停止中</b>
-              <% end %>
-            </td>
+        <tr class = "b-0">
+          <td><%= item.id %></td>
+          <td><%= link_to item.name,admin_item_path(item.id) %></td>
+          <td><%= item.non_tax_price.to_s(:delimited) %></td>
+          <td><%= item.genre.name %></td>
+          <td>
+            <% if item.is_selling == true %>
+              <b class = "text-success">販売中</b>
+            <% else %>
+              <b class = "text-black-50">販売停止中</b>
+            <% end %>
+          </td>
           </tr>
         <% end %>
       </tbody>
