@@ -1,17 +1,14 @@
 module Public::CartItemsHelper
 
-  #税込表示
   def with_tax_price(price)
     @tax_in = (price*1.1).floor
     @tax_in.to_s(:delimited)
   end
 
-  #小計表示
   def subtotal(quantity)
     ((@tax_in.to_i)*quantity).floor.to_s(:delimited)
   end
 
-  #合計表示
   def total_price(cart_item_all)
     @price = 0
     cart_item_all.each do |cart_items|
