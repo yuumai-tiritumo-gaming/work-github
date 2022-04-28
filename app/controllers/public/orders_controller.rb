@@ -14,7 +14,6 @@ class Public::OrdersController < ApplicationController
   def new
       @order     = Order.new
       @addresses = current_customer.addresses
-    # 中央揃えと=揃えどっちが見やすいかな
   end
 
   def check
@@ -39,8 +38,6 @@ class Public::OrdersController < ApplicationController
         @order.address     = params[:order][:address]
         @order.name        = params[:order][:name]
       end
-      # params[:order][:hoge]とparams[:hoge]の違いを説明できないけど、params[:hoge]はnilだった
-      # まとめて書ける？@order = params[:postal_code,:address,:name]
     end
     @cart_items = current_customer.cart_items
   end
@@ -54,7 +51,6 @@ class Public::OrdersController < ApplicationController
                           price: item.non_tax_price,
                        quantity: cart_items.quantity)
     end
-    # これcreate View作ればいいんじゃないの？
     current_customer.cart_items.destroy_all
     redirect_to public_orders_conform_path
   end

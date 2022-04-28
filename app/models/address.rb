@@ -8,8 +8,6 @@ class Address < ApplicationRecord
 
   def view_address_info
     "〒" + postal_code + " " + address + " " + name
-    # "〒" + self.postal_code + " " + self.address + " " + self.name
-    # ここどうするか？
   end
 
 end
