@@ -3,7 +3,10 @@
     <div class="container">
       <div class="row navbar-collapse" id="navbarNavDropdown">
         <div class="col-sm-2">
-          <span>ながのCAKE</span>
+          <%= link_to public_root_path do %>
+            <span class="text-light">ながのCAKE</span>
+            <%= image_tag "logo-image.png", size: "50x50" %>
+          <% end %>
         </div>
 
           <% if customer_signed_in? %>
@@ -34,7 +37,8 @@
                   <% end %>
                 </li>
               <% elsif admin_signed_in? %>
-          <div class="col-sm-5">
+            <div class="col-sm-4"></div>
+          <div class="col-sm-6">
             <div>
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -63,6 +67,7 @@
                   <% end %>
                 </li>
             <% else %>
+            <div class="col-sm-5"></div>
           <div class="col-sm-5">
             <div>
               <ul class="navbar-nav ml-auto">
@@ -90,11 +95,11 @@
               </ul>
               </div>
             <div class="ml-5">
-            <%= form_with class: "rootpageSearchForm" do |form| %>
-              <div class="input-group mb-3">
-                <%= form.text_field :keyword, placeholder: "Search", id: 'Search_Form', class: "border border-dark border-right-0" %>
+            <%= form_with class: "rootpageSearchForm", method: :get do |f| %>
+              <div class="input-group ml-5 mb-3">
+                <%= f.text_field :keyword, placeholder: "Search", id: 'Search_Form', class: "border border-dark border-right-0" %>
               <div class="input-group-append">
-                <%= form.button :type => "submit", style: 'border-style: none;', class: "bg-white border border-dark border-left-0" do %>
+                <%= f.button :type => "submit", style: 'border-style: none;', class: "bg-white border border-dark border-left-0" do %>
                   <i class='fas fa-search'></i>
                 <% end %>
               </div>
